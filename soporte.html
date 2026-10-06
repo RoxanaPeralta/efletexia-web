@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soporte — Efletexia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0A0A; --bg2:#111111; --bg4:#050505;
+  --brand:#F97316; --line:#262626; --n300:#D4D4D4; --n400:#A3A3A3; --n500:#737373;
+  --green:#00FF94; --amber:#FBBF24; --red:#ef4444;
+  --acento:#F97316; --acento-sua:rgba(249,115,22,.14); --acento-bor:rgba(249,115,22,.4);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{background:var(--bg);color:#fff;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+button,select,textarea,input{font-family:'Inter',sans-serif}
+
+.split{display:grid;grid-template-columns:40% 60%;min-height:100vh}
+
+.marca{position:relative;overflow:hidden;padding:56px 54px;display:flex;flex-direction:column;
+  justify-content:space-between;background:var(--bg4)}
+.marca .halo{position:absolute;inset:0;background:radial-gradient(900px 600px at 15% 0%,var(--acento-sua),transparent 62%)}
+.marca::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:54px 54px;mask-image:radial-gradient(circle at 30% 30%,#000,transparent 75%)}
+.marca>*{position:relative;z-index:2}
+.logo{font-size:15px;font-weight:600;letter-spacing:.06em;color:var(--n400)}
+.logo b{color:var(--brand)}
+.m-nom{font-size:clamp(30px,3.6vw,44px);font-weight:700;letter-spacing:-1.4px;line-height:1.05;margin-bottom:14px}
+.m-nom span{color:var(--acento)}
+.m-sub{font-size:16px;color:var(--n400);font-weight:300;line-height:1.7;max-width:430px;margin-bottom:32px}
+.m-lista{list-style:none;display:flex;flex-direction:column;gap:13px}
+.m-lista li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--n300)}
+.m-lista i{font-style:normal;width:20px;height:20px;border-radius:50%;flex-shrink:0;margin-top:1px;
+  background:var(--acento-sua);border:1px solid var(--acento-bor);color:var(--acento);
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.m-chip{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--n500);
+  border:1px solid var(--line);border-radius:999px;padding:6px 13px;display:inline-block;margin-right:8px}
+
+.zona{display:flex;align-items:flex-start;justify-content:center;padding:56px 40px;background:var(--bg2)}
+.caja{width:100%;max-width:560px}
+.volver{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--n500);margin-bottom:28px;transition:color .2s}
+.volver:hover{color:#fff}
+h1{font-size:29px;font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h2{font-size:18px;font-weight:600;letter-spacing:-.3px;margin-bottom:16px}
+.lead{font-size:15px;color:var(--n400);line-height:1.65;margin-bottom:28px}
+
+.campo{margin-bottom:18px}
+.fl{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--n500);margin-bottom:9px}
+.inp-wrap{position:relative}
+.inp{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:12px;
+  padding:14px 15px;color:#fff;font-size:14.5px;transition:border-color .2s,box-shadow .2s}
+.inp:focus{outline:none;border-color:var(--acento);box-shadow:0 0 0 3px var(--acento-sua)}
+.inp::placeholder{color:#525252}
+select.inp{appearance:none;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,#737373 50%),linear-gradient(135deg,#737373 50%,transparent 50%);
+  background-position:calc(100% - 20px) 50%,calc(100% - 15px) 50%;background-size:5px 5px;background-repeat:no-repeat}
+textarea.inp{min-height:120px;resize:vertical;line-height:1.6}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ojo{position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;
+  color:var(--n500);cursor:pointer;font-size:12px;padding:4px 7px;border-radius:7px}
+.ojo:hover{color:#fff;background:rgba(255,255,255,.06)}
+.demo{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.demo span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--n500)}
+.demo code{font-size:11.5px;color:var(--acento);background:var(--acento-sua);
+  border:1px solid var(--acento-bor);border-radius:7px;padding:4px 9px;cursor:pointer}
+.prio{display:flex;gap:8px}
+.prio label{flex:1;cursor:pointer}
+.prio input{display:none}
+.prio span{display:block;text-align:center;padding:12px 8px;border-radius:12px;border:1px solid var(--line);
+  background:var(--bg);font-size:13.5px;color:var(--n400);transition:all .2s}
+.prio input:checked+span{border-color:var(--acento);color:#fff;background:var(--acento-sua)}
+.fila{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:24px}
+.olvide{font-size:13px;color:var(--n400);background:none;border:none;cursor:pointer}
+.olvide:hover{color:var(--acento)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:none;cursor:pointer;
+  border-radius:12px;padding:14px 30px;font-size:14.5px;font-weight:500;transition:all .3s ease}
+.btn-p{background:var(--acento);color:#0A0A0A;font-weight:600}
+.btn-p:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.1)}
+.btn-p:disabled{opacity:.5;cursor:not-allowed}
+.msg{display:none;margin-top:18px;padding:13px 15px;border-radius:12px;font-size:13.5px;line-height:1.55}
+.msg.on{display:block}
+.msg.err{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);color:#fca5a5}
+.msg.ok{background:rgba(0,255,148,.07);border:1px solid rgba(0,255,148,.3);color:#66FFC0}
+
+.quien{display:flex;align-items:center;gap:14px;background:var(--bg);border:1px solid var(--line);
+  border-radius:14px;padding:14px 16px;margin-bottom:30px}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--acento-sua);border:1px solid var(--acento-bor);
+  color:var(--acento);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.quien b{display:block;font-size:14.5px}
+.quien small{font-size:12.5px;color:var(--n500)}
+.salir{margin-left:auto;font-size:12.5px;color:var(--n400);background:none;border:1px solid var(--line);
+  border-radius:9px;padding:7px 12px;cursor:pointer}
+.salir:hover{color:#fff;border-color:#525252}
+
+.bloque{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:22px}
+.tickets{display:flex;flex-direction:column;gap:10px}
+.tk{display:grid;grid-template-columns:auto 1fr auto;gap:4px 14px;align-items:center;
+  border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:var(--bg2)}
+.tk .id{font-size:12px;color:var(--n500);font-variant-numeric:tabular-nums}
+.tk .as{font-size:14px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tk .meta{grid-column:2/4;font-size:12px;color:var(--n500)}
+.est{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;border-radius:999px;padding:4px 10px}
+.est.abierto{color:var(--amber);background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.35)}
+.est.curso{color:#7dd3fc;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.3)}
+.est.resuelto{color:var(--green);background:rgba(0,255,148,.07);border:1px solid rgba(0,255,148,.3)}
+.vacio{font-size:13.5px;color:var(--n500)}
+
+.pie{margin-top:30px;padding-top:22px;border-top:1px solid var(--line);
+  display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--n500)}
+.pie a:hover{color:var(--acento)}
+
+.ov{position:fixed;inset:0;background:rgba(5,5,5,.88);backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;padding:24px;z-index:90}
+.ov.on{display:flex}
+.robot{width:100%;max-width:430px;background:var(--bg2);border:1px solid var(--line);
+  border-radius:18px;padding:34px;text-align:center}
+.robot h3{font-size:19px;font-weight:600;margin:16px 0 10px}
+.robot p{font-size:14px;color:var(--n400);line-height:1.65;margin-bottom:24px}
+.candado{width:58px;height:58px;border-radius:50%;margin:0 auto;display:flex;align-items:center;
+  justify-content:center;font-size:24px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3)}
+.check{display:flex;align-items:center;gap:13px;background:var(--bg);border:1px solid var(--line);
+  border-radius:12px;padding:15px 17px;cursor:pointer;margin-bottom:20px;text-align:left}
+.check input{accent-color:var(--acento);width:19px;height:19px;cursor:pointer}
+
+@media(max-width:980px){
+  .split{grid-template-columns:1fr}
+  .marca{padding:38px 26px;gap:24px}
+  .m-lista{display:none}
+  .zona{padding:34px 16px}
+}
+@media(max-width:520px){
+  .dos{grid-template-columns:1fr}
+  .prio{flex-wrap:wrap}
+  .bloque{padding:18px}
+}
+</style>
+</head>
+<body>
+
+<div class="split">
+
+  <aside class="marca">
+    <div class="halo"></div>
+    <a href="index.html" class="logo">EFLETEX<b>IA</b></a>
+
+    <div>
+      <h2 class="m-nom"><span>Soporte</span><br>para clientes.</h2>
+      <p class="m-sub">Si algo no funciona en la solución que contrataste, cuéntanos aquí. Tu caso queda registrado y puedes ver en qué va.</p>
+      <ul class="m-lista">
+        <li><i>✓</i><span>Entras con el mismo usuario y contraseña de Mi cuenta</span></li>
+        <li><i>✓</i><span>Cada caso recibe un número para darle seguimiento</span></li>
+        <li><i>✓</i><span>Te avisamos por correo cuando cambia de estado</span></li>
+      </ul>
+    </div>
+
+    <div><span class="m-chip">Solo clientes</span><span class="m-chip">Atención 24/7</span></div>
+  </aside>
+
+  <main class="zona">
+    <div class="caja">
+      <a href="index.html" class="volver">← Volver al inicio</a>
+
+      <!-- 1 · Sin sesión: pide login -->
+      <section id="vLogin">
+        <h1>Soporte</h1>
+        <p class="lead">Inicia sesión con tu cuenta de cliente para abrir un caso o revisar los que ya tienes.</p>
+
+        <form onsubmit="entrar(event)">
+          <div class="campo">
+            <label class="fl" for="correo">Correo electrónico</label>
+            <input class="inp" id="correo" type="email" placeholder="nombre@empresa.com" autocomplete="username">
+            <div class="demo"><span>Demo</span><code onclick="$('correo').value=this.textContent">carlos.lopez@gmail.com</code></div>
+          </div>
+          <div class="campo">
+            <label class="fl" for="clave">Contraseña</label>
+            <div class="inp-wrap">
+              <input class="inp" id="clave" type="password" placeholder="••••••••" autocomplete="current-password" style="padding-right:76px">
+              <button type="button" class="ojo" onclick="verClave(this)">Mostrar</button>
+            </div>
+            <div class="demo"><span>Demo</span><code onclick="$('clave').value=this.textContent">123456</code></div>
+          </div>
+          <div class="fila">
+            <button type="button" class="olvide" onclick="aviso('msg','Escríbenos por WhatsApp para restablecer tu contraseña. En esta maqueta la opción no está habilitada.','err')">Olvidé mi contraseña</button>
+            <button type="submit" class="btn btn-p" id="btnEntrar">Entrar</button>
+          </div>
+          <div class="msg" id="msg"></div>
+        </form>
+
+        <p class="lead" style="margin:28px 0 0;font-size:13.5px">¿Todavía no eres cliente? <a href="index.html#contacto" style="color:var(--acento)">Solicita información</a> o escríbenos por <a href="https://wa.me/+522223284900" target="_blank" rel="noopener" style="color:var(--acento)">WhatsApp</a>.</p>
+      </section>
+
+      <!-- 2 · Con sesión: abrir caso y ver los suyos -->
+      <section id="vSoporte" style="display:none">
+        <div class="quien">
+          <div class="avatar">CL</div>
+          <div><b>Carlos López</b><small>Transportes Colón · Cliente</small></div>
+          <button class="salir" onclick="salir()">Cerrar sesión</button>
+        </div>
+
+        <div class="bloque">
+          <h2>Abrir un caso</h2>
+          <form onsubmit="crearTicket(event)">
+            <div class="dos">
+              <div class="campo">
+                <label class="fl" for="tSol">Solución</label>
+                <select class="inp" id="tSol">
+                  <option>Viax</option>
+                  <option>Qubo</option>
+                  <option>Mi cuenta / acceso web</option>
+                </select>
+              </div>
+              <div class="campo">
+                <label class="fl" for="tCat">Categoría</label>
+                <select class="inp" id="tCat">
+                  <option>No puedo entrar</option>
+                  <option>Error en la plataforma</option>
+                  <option>Usuarios y permisos</option>
+                  <option>Consulta de uso</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+            </div>
+            <div class="campo">
+              <span class="fl">Prioridad</span>
+              <div class="prio">
+                <label><input type="radio" name="prio" value="Baja"><span>Baja</span></label>
+                <label><input type="radio" name="prio" value="Media" checked><span>Media</span></label>
+                <label><input type="radio" name="prio" value="Alta"><span>Alta · operación detenida</span></label>
+              </div>
+            </div>
+            <div class="campo">
+              <label class="fl" for="tAsunto">Asunto</label>
+              <input class="inp" id="tAsunto" maxlength="90" placeholder="Ej.: El conductor no puede cerrar el viaje">
+            </div>
+            <div class="campo">
+              <label class="fl" for="tDesc">Qué pasó</label>
+              <textarea class="inp" id="tDesc" placeholder="Cuéntanos qué intentabas hacer, qué viste y desde cuándo pasa."></textarea>
+            </div>
+            <div class="fila" style="justify-content:flex-end;margin-top:6px">
+              <button type="submit" class="btn btn-p">Enviar caso</button>
+            </div>
+            <div class="msg" id="msgT"></div>
+          </form>
+        </div>
+
+        <div class="bloque">
+          <h2>Mis casos</h2>
+          <div class="tickets" id="lista"></div>
+        </div>
+      </section>
+
+      <div class="pie">
+        <a href="index.html">Inicio</a>
+        <a href="soporte.html">Soporte</a>
+        <a href="https://wa.me/+522223284900" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="ov" id="ov">
+  <div class="robot">
+    <div class="candado">🔒</div>
+    <h3>Demasiados intentos</h3>
+    <p>Por seguridad bloqueamos el ingreso tras tres intentos fallidos. Confirma que no eres un robot para volver a intentarlo.</p>
+    <label class="check"><input type="checkbox" id="noRobot"><span>No soy un robot</span></label>
+    <button class="btn btn-p" style="width:100%" onclick="liberar()">Continuar</button>
+  </div>
+</div>
+
+<script>
+var DEMO = { correo: 'carlos.lopez@gmail.com', clave: '123456' };
+var CLAVE_SESION = 'efx-soporte-sesion', CLAVE_TICKETS = 'efx-soporte-tickets';
+var BASE = [
+  { id: 'T-0042', sol: 'Viax', cat: 'Usuarios y permisos', prio: 'Media', asunto: 'Un monitor nuevo no ve el mapa en vivo', fecha: '02 oct 2026', estado: 'resuelto' },
+  { id: 'T-0047', sol: 'Qubo', cat: 'Error en la plataforma', prio: 'Alta', asunto: 'El manifiesto por ejes no se imprime', fecha: 'Ayer', estado: 'curso' }
+];
+var ESTADOS = { abierto: 'Abierto', curso: 'En curso', resuelto: 'Resuelto' };
+var intentos = 0;
+
+function $(id) { return document.getElementById(id); }
+function leer(k, def) { try { var v = sessionStorage.getItem(k) || localStorage.getItem(k); return v ? JSON.parse(v) : def; } catch (e) { return def; } }
+function guardar(k, v, sesion) { try { (sesion ? sessionStorage : localStorage).setItem(k, JSON.stringify(v)); } catch (e) {} }
+function borrar(k) { try { sessionStorage.removeItem(k); } catch (e) {} }
+
+var tickets = leer(CLAVE_TICKETS, null) || BASE.slice();
+
+function aviso(id, texto, tipo) {
+  var m = $(id);
+  m.className = 'msg' + (texto ? ' on ' + tipo : '');
+  m.textContent = texto;
+}
+function verClave(b) {
+  var c = $('clave'), oculto = c.type === 'password';
+  c.type = oculto ? 'text' : 'password';
+  b.textContent = oculto ? 'Ocultar' : 'Mostrar';
+}
+function liberar() {
+  if (!$('noRobot').checked) return;
+  $('ov').classList.remove('on');
+  $('noRobot').checked = false;
+  intentos = 0;
+}
+function mostrar(conSesion) {
+  $('vLogin').style.display = conSesion ? 'none' : 'block';
+  $('vSoporte').style.display = conSesion ? 'block' : 'none';
+  if (conSesion) pintar();
+  window.scrollTo(0, 0);
+}
+function entrar(e) {
+  e.preventDefault();
+  var correo = $('correo').value.trim().toLowerCase(), clave = $('clave').value;
+  if (!correo || !clave) { aviso('msg', 'Completa tu correo y tu contraseña.', 'err'); return; }
+  if (correo === DEMO.correo && clave === DEMO.clave) {
+    aviso('msg', '', '');
+    guardar(CLAVE_SESION, { correo: correo }, true);
+    mostrar(true);
+    return;
+  }
+  intentos++;
+  if (intentos >= 3) { $('ov').classList.add('on'); aviso('msg', '', ''); return; }
+  var quedan = 3 - intentos;
+  aviso('msg', 'Correo o contraseña incorrectos. Te queda' + (quedan === 1 ? ' 1 intento' : 'n ' + quedan + ' intentos') + ' antes del bloqueo.', 'err');
+}
+function salir() { borrar(CLAVE_SESION); $('clave').value = ''; mostrar(false); }
+
+function pintar() {
+  var l = $('lista');
+  l.innerHTML = '';
+  if (!tickets.length) { l.innerHTML = '<p class="vacio">Todavía no tienes casos abiertos.</p>'; return; }
+  tickets.forEach(function (t) {
+    var d = document.createElement('div');
+    d.className = 'tk';
+    var id = document.createElement('span'); id.className = 'id'; id.textContent = '#' + t.id;
+    var as = document.createElement('span'); as.className = 'as'; as.textContent = t.asunto;
+    var es = document.createElement('span'); es.className = 'est ' + t.estado; es.textContent = ESTADOS[t.estado];
+    var me = document.createElement('span'); me.className = 'meta';
+    me.textContent = t.sol + ' · ' + t.cat + ' · Prioridad ' + t.prio.toLowerCase() + ' · ' + t.fecha;
+    d.appendChild(id); d.appendChild(as); d.appendChild(es); d.appendChild(me);
+    l.appendChild(d);
+  });
+}
+function crearTicket(e) {
+  e.preventDefault();
+  var asunto = $('tAsunto').value.trim(), desc = $('tDesc').value.trim();
+  if (!asunto || !desc) { aviso('msgT', 'Escribe el asunto y qué pasó para poder ayudarte.', 'err'); return; }
+  var num = 48 + tickets.filter(function (t) { return t.estado === 'abierto'; }).length;
+  var t = {
+    id: 'T-' + ('000' + num).slice(-4),
+    sol: $('tSol').value, cat: $('tCat').value,
+    prio: document.querySelector('input[name=prio]:checked').value,
+    asunto: asunto, fecha: 'Hoy', estado: 'abierto'
+  };
+  tickets.unshift(t);
+  guardar(CLAVE_TICKETS, tickets);
+  $('tAsunto').value = ''; $('tDesc').value = '';
+  aviso('msgT', 'Caso #' + t.id + ' enviado. Te escribiremos a ' + DEMO.correo + ' cuando lo tomemos.', 'ok');
+  pintar();
+}
+
+mostrar(!!leer(CLAVE_SESION, null));
+</script>
+</body>
+</html>
