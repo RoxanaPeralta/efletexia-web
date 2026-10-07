@@ -258,6 +258,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;
 
 /* acciones por fila */
 .rowact{display:flex;gap:6px}
+.mini{white-space:nowrap}
 .mini{font-family:var(--mono);font-size:9.5px;letter-spacing:.8px;text-transform:uppercase;
   padding:4px 9px;border-radius:4px;cursor:pointer;background:transparent;
   border:1px solid var(--b1);color:var(--muted);transition:all .2s}
@@ -1513,6 +1514,7 @@ function guardarRegistro() {
   br.innerHTML = `<td class="tbl-email">Ahora</td><td class="tbl-name">Juan Ramírez</td><td class="tbl-email">Registró alta</td><td class="tbl-name">${esc(nom)}</td><td class="tbl-email">${plats.join(', ')} · ticket ${esc(tk)} aprobado por Soporte</td>`;
   bt.insertBefore(br, bt.firstChild);
   if (regIdx >= 0) { SOL[regIdx].et = 'alta'; SOL[regIdx].tk = tk; pintarSol(); }
+  pintarBloq();
   cerrarRegistro();
   aviso('Alta registrada: ' + nom + ' ya aparece en Clientes');
 }
@@ -1724,6 +1726,19 @@ function pintarBloq() {
   $('fEstado').innerHTML = `<span class="status ${bloqCarlos ? 'st-blocked' : 'st-active'}">${bloqCarlos ? 'BLOQUEADA' : 'ACTIVA'}</span>
     <button class="mini ${bloqCarlos ? 'ok' : 'warn'}" style="margin-left:8px" onclick="abrirCta('${bloqCarlos ? 'desbloqueo' : 'bloqueo'}','Carlos López')">${bloqCarlos ? 'Registrar desbloqueo' : 'Registrar bloqueo'}</button>`;
   document.querySelectorAll('.kpi-label').forEach(l => { if (l.textContent === 'Cuentas bloqueadas') l.closest('.kpi').querySelector('.kpi-val span').textContent = BLOQ.length; });
+  // en cada fila de Clientes: registrar bloqueo o desbloqueo según su estado
+  document.querySelectorAll('#v-clientes tbody tr').forEach(tr => {
+    const ra = tr.querySelector('.rowact'); if (!ra || !tr.children[7]) return;
+    ra.style.flexWrap = 'nowrap';
+    const ln = ra.querySelector('a.mini'); if (ln) { ln.textContent = 'Soporte ↗'; ln.title = 'Pedir un cambio a Soporte'; }
+    const nom = tr.children[1].textContent.trim();
+    const bloq = /BLOQUEADO/.test(tr.children[7].textContent);
+    let b = ra.querySelector('.bq');
+    if (!b) { b = document.createElement('button'); b.className = 'mini bq'; ra.appendChild(b); }
+    b.className = 'mini bq ' + (bloq ? 'ok' : 'warn');
+    b.textContent = bloq ? 'Registrar desbloqueo' : 'Registrar bloqueo';
+    b.onclick = () => abrirCta(bloq ? 'desbloqueo' : 'bloqueo', nom);
+  });
 }
 function abrirCta(modo, cli) {
   ctaModo = modo; ctaCli = cli || '';
