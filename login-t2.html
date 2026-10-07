@@ -223,6 +223,8 @@
                     <a href="index.html" class="hover:text-white/60">Inicio</a>
                     <span>&#183;</span>
                     <a href="acceso-t1t2.html" class="hover:text-white/60">Plataformas</a>
+                    <span>&#183;</span>
+                    <a id="lnkSoporte2" href="#" target="_blank" rel="noopener" class="hover:text-white/60">Soporte</a>
                 </div>
             </div>
         </div>
@@ -232,7 +234,7 @@
 <script>
     // Maqueta de dise\u00f1o: el inicio de sesi\u00f3n real lo valida la plataforma T2.
     const SOPORTE = 'https://portal-usuarios.dtdevops.com/';
-    ['lnkOlvide', 'lnkSoporte'].forEach(id => document.getElementById(id).href = SOPORTE);
+    ['lnkOlvide', 'lnkSoporte', 'lnkSoporte2'].forEach(id => document.getElementById(id).href = SOPORTE);
 
     function verClave(el) {
         const c = document.getElementById('clave');
