@@ -1262,6 +1262,7 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
     <div class="modal-hdr"><div class="modal-title">Registrar alta</div><button class="modal-close" onclick="cerrarRegistro()">✕</button></div>
     <div class="modal-body">
       <p style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px">Solo después del <b style="color:var(--amber)">OK de Soporte</b>. Marketing no crea usuarios: registra el alta que Soporte ya hizo en sus sistemas.</p>
+      <p id="rOrigen" style="display:none;font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px;padding:10px 12px;border:1px solid var(--b1);border-radius:4px;background:var(--bg3)"></p>
       <div class="fld"><label>Ticket de Soporte</label><input class="inp" id="rTicket" placeholder="#T-0000"></div>
       <div class="twocol" style="gap:12px">
         <div class="fld"><label>Cliente / empresa</label><input class="inp" id="rEmpresa"></div>
@@ -1454,7 +1455,7 @@ function pintarSol() {
     const opts = ETAPAS.map(e => `<option value="${e[0]}"${e[0] === s.et ? ' selected' : ''}>${e[1]}</option>`).join('');
     const ropts = ['Sin asignar', 'Marta Díaz', 'Juan Ramírez'].map(r => `<option${r === s.r ? ' selected' : ''}>${r}</option>`).join('');
     const alta = s.et === 'cerrada' ? `<button class="mini ok" onclick="pedirAlta(${i})">Pedir alta a Soporte ↗</button>`
-      : s.et === 'soporte' ? `<button class="mini" title="Corregir el número anotado" onclick="abrirAnotar(${i})" style="color:var(--amber)">${s.tk || 'Anotar ticket'}</button><button class="mini ok" onclick="abrirRegistro(${i})">Registrar alta</button>`
+      : s.et === 'soporte' ? `<button class="mini" title="Corregir el número anotado" onclick="abrirAnotar(${i})" style="color:var(--amber)">${s.tk || 'Anotar ticket'}</button><button class="mini ok" onclick="irARegistrar(${i})">Registrar alta</button>`
       : s.et === 'alta' ? `<span class="tbl-id">${s.tk}</span>` : '';
     return `<tr><td class="tbl-email">${s.f}</td><td class="tbl-name">${esc(s.n)}</td><td class="tbl-email">${esc(s.e)}</td><td class="tbl-email">${s.p}</td>
       <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">${s.pr}</span></td>
@@ -1485,8 +1486,15 @@ function guardarAnotar() {
   pintarSol();
 }
 let regIdx = -1;
+function irARegistrar(i) {
+  mostrar('clientes');
+  abrirRegistro(i);
+  aviso('Para pasar a "Dada de alta" registra el alta aquí, en Clientes');
+}
 function abrirRegistro(i) {
   regIdx = i; const s = i >= 0 ? SOL[i] : {};
+  $('rOrigen').innerHTML = i >= 0 ? `Viene de la solicitud de <b style="color:var(--text)">${esc(s.n)}</b>. Al registrar, la solicitud pasa a <b style="color:var(--text)">Dada de alta</b>; si cancelas, se queda como está.` : '';
+  $('rOrigen').style.display = i >= 0 ? 'block' : 'none';
   $('rTicket').value = s.tk || ''; $('rEmpresa').value = s.e || ''; $('rNombre').value = s.n || '';
   $('rCorreo').value = s.c || ''; $('rOk').checked = false;
   const pre = s.pr && s.pr !== 'PLATAFORMA T2' ? s.pr : 'VIAX';
@@ -1521,6 +1529,7 @@ function guardarRegistro() {
 function filtrarEtapa(e) { solEt = solEt === e ? '' : e; pintarSol(); }
 function moverEtapa(i, e) {
   if (e === 'soporte' && !SOL[i].tk) { pintarSol(); abrirAnotar(i); return; }
+  if (e === 'alta' && SOL[i].et !== 'alta') { pintarSol(); irARegistrar(i); return; }
   SOL[i].et = e;
   const nom = ETAPAS.find(x => x[0] === e)[1];
   aviso(SOL[i].n + ' pasó a ' + nom + ' · queda en la bitácora');
