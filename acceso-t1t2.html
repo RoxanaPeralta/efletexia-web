@@ -3,7 +3,7 @@
 <!--
   EfletexIA &#8212; Acceso a plataformas T1 y T2
   Pantalla para "Iniciar sesi&#243;n" con el mismo dise&#241;o del login actual (Tailwind + Inter + paleta brand/dark).
-  Para integrarla: reemplaza el contenido de login.html o enlaza "Log in" a este archivo.
+  Para integrarla: reemplaza el contenido de login.html o enlaza "Log in" a este archivo. Las tarjetas T1 y T2 abren login-t1.html y login-t2.html.
   Las direcciones de cada plataforma est&#225;n en CONFIG (al final del archivo).
 -->
 <head>
@@ -205,8 +205,8 @@
 <script>
     // \u2500\u2500 CONFIGURACI\u00d3N: direcciones de cada plataforma \u2500\u2500
     const CONFIG = {
-        T1: 'https://efletexia.com/login/inicio',          // login actual de T1
-        T2: 'https://pruebast2.dtdevops.com/login',        // login de T2 (reemplazar por la URL de producci\u00f3n)
+        T1: 'login-t1.html',                               // pantalla de login T1 (plataforma real: https://efletexia.com/login/inicio)
+        T2: 'login-t2.html',                               // pantalla de login T2 (plataforma real: https://pruebast2.dtdevops.com/login)
         T2_DISPONIBLE: true,                               // false = muestra T2 como "Pr\u00f3ximamente" y sin enlace
         SOPORTE: 'https://portal-usuarios.dtdevops.com/'
     };
