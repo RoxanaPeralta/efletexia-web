@@ -1082,7 +1082,7 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
         <thead><tr><th>Fecha</th><th>Nombre</th><th>Empresa</th><th>País</th><th>Producto</th><th>Responsable</th><th>Etapa</th><th>Acciones</th></tr></thead>
         <tbody id="solTabla"></tbody>
       </table>
-      <div class="hint">Una solicitud <b>no crea usuario ni contraseña</b>. Marketing <b>no da de alta</b>: en <b>Cerrada</b> pide el alta a Soporte con un ticket; cuando Soporte da el OK, usa <b>Registrar alta</b>.</div>
+      <div class="hint">Una solicitud <b>no crea usuario ni contraseña</b>. Todo lo que sea alta se hace en <b>Clientes → Registrar alta</b>: elegir "Alta en Soporte" o "Dada de alta" te lleva allí, y la solicitud solo cambia de etapa si el registro se guarda.</div>
     </div>
     </div>
 
@@ -1261,7 +1261,7 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
   <div class="modal">
     <div class="modal-hdr"><div class="modal-title">Registrar alta</div><button class="modal-close" onclick="cerrarRegistro()">✕</button></div>
     <div class="modal-body">
-      <p style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px">Solo después del <b style="color:var(--amber)">OK de Soporte</b>. Marketing no crea usuarios: registra el alta que Soporte ya hizo en sus sistemas.</p>
+      <p style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px">Pide el alta en <a href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="color:var(--amber)">Soporte ↗</a> y anota aquí el número de ticket. Marketing no crea usuarios: si Soporte ya dio el OK, márcalo y el cliente queda <b style="color:var(--text)">Activo</b>; si no, queda en <b style="color:var(--text)">Alta en Soporte</b> hasta que lo confirmes.</p>
       <p id="rOrigen" style="display:none;font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px;padding:10px 12px;border:1px solid var(--b1);border-radius:4px;background:var(--bg3)"></p>
       <div class="fld"><label>Ticket de Soporte</label><input class="inp" id="rTicket" placeholder="#T-0000"></div>
       <div class="twocol" style="gap:12px">
@@ -1272,7 +1272,7 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
         <div class="fld"><label>Usuario dado de alta</label><input class="inp" id="rNombre"></div>
         <div class="fld"><label>Correo del usuario</label><input class="inp" id="rCorreo" placeholder="nombre@empresa.com"></div>
       </div>
-      <label class="check-ok" style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text);margin:4px 0 16px;cursor:pointer"><input type="checkbox" id="rOk" style="margin-top:2px;accent-color:#22c55e">Confirmo que Soporte cerró el ticket con el alta lista</label>
+      <label class="check-ok" style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text);margin:4px 0 16px;cursor:pointer"><input type="checkbox" id="rOk" style="margin-top:2px;accent-color:#22c55e">Soporte ya dio el OK: el cliente ya tiene acceso</label>
       <div style="display:flex;justify-content:flex-end;gap:10px"><button class="btn-sm btn-sm-ghost" onclick="cerrarRegistro()">Cancelar</button><button class="btn-sm btn-sm-primary" onclick="guardarRegistro()">Registrar alta</button></div>
     </div>
   </div>
@@ -1426,16 +1426,17 @@ pintarAnalitica();
 
 // ── Solicitudes como embudo
 const MESA = 'https://portal-usuarios.dtdevops.com/';
-const ETAPAS = [['nueva', 'Nueva', 'st-pending'], ['contactada', 'Contactada', 'st-blue'], ['demo', 'Demo', 'st-purple'], ['cerrada', 'Cerrada', 'st-active'], ['soporte', 'Alta en Soporte', 'st-pending'], ['alta', 'Dada de alta', 'st-active'], ['sin', 'Sin interés', 'st-inactive']];
+const ETAPAS = [['nueva', 'Nueva', 'st-pending'], ['contactada', 'Contactada', 'st-blue'], ['demo', 'Demo', 'st-purple'], ['soporte', 'Alta en Soporte', 'st-pending'], ['alta', 'Dada de alta', 'st-active'], ['sin', 'Sin interés', 'st-inactive']];
+const ALTAS = ['soporte', 'alta'];
 const SOL = [
   { f: 'Hoy · 09:20', n: 'Jorge Lazo', e: 'Andina Cargo', p: 'Perú', pr: 'QUBO', r: 'Sin asignar', et: 'nueva' },
   { f: 'Hoy · 08:05', n: 'Rocío Paredes', e: 'Distribuidora Sur', p: 'Ecuador', pr: 'EFLETEXIA BI', r: 'Sin asignar', et: 'nueva' },
   { f: 'Hoy · 06:41', n: 'Hugo Ramírez', e: 'Transportes Colón', p: 'Guatemala', pr: 'VIAX', r: 'Marta Díaz', et: 'nueva' },
   { f: 'Ayer · 18:02', n: 'Sara Molina', e: 'Logística Pacífico', p: 'Colombia', pr: 'PLATAFORMA T2', r: 'Sin asignar', et: 'nueva' },
   { f: 'Ayer · 16:12', n: 'Elena Ruiz', e: 'Log Andes', p: 'Perú', pr: 'VIAX', r: 'Juan Ramírez', et: 'contactada' },
-  { f: 'Ayer · 11:30', n: 'Pablo Sierra', e: 'Cargo Norte', p: 'México', pr: 'VIAX', r: 'Marta Díaz', et: 'demo' },
+  { f: 'Ayer · 11:30', n: 'Pablo Sierra', e: 'Cargo Norte', p: 'México', pr: 'VIAX', r: 'Marta Díaz', et: 'demo', c: 'p.sierra@cargonorte.mx' },
   { f: '28 sep', n: 'Tomás Vega', e: 'Ruta Sur', p: 'Perú', pr: 'VIAX', r: 'Marta Díaz', et: 'soporte', tk: '#T-0051', c: 't.vega@rutasur.pe' },
-  { f: '25 sep', n: 'Iris Campos', e: 'Carga Rápida', p: 'México', pr: 'VIAX', r: 'Juan Ramírez', et: 'cerrada', c: 'iris@cargarapida.mx' },
+  { f: '25 sep', n: 'Iris Campos', e: 'Carga Rápida', p: 'México', pr: 'VIAX', r: 'Juan Ramírez', et: 'demo', c: 'iris@cargarapida.mx' },
   { f: '22 sep', n: 'Andrea Lima', e: 'TransAndes', p: 'Colombia', pr: 'VIAX', r: 'Juan Ramírez', et: 'alta', tk: '#T-0046' },
   { f: '12 sep', n: 'Lucía Barrios', e: 'Frío Express', p: 'Costa Rica', pr: 'QUBO', r: 'Juan Ramírez', et: 'sin' }
 ];
@@ -1443,7 +1444,7 @@ let solEt = '';
 function pintarSol() {
   const resp = $('solResp').value, prod = $('solProd').value;
   const base = SOL.filter(s => (!resp || s.r === resp) && (!prod || s.pr === prod));
-  $('solFunnel').style.gridTemplateColumns = 'repeat(7,1fr)';
+  $('solFunnel').style.gridTemplateColumns = 'repeat(6,1fr)';
   $('solFunnel').innerHTML = ETAPAS.map(e => {
     const n = base.filter(s => s.et === e[0]).length;
     return `<div class="fstage${solEt === e[0] ? ' on' : ''}" onclick="filtrarEtapa('${e[0]}')"><div class="fs-l">${e[1]}</div><div class="fs-n">${n}</div><div class="fs-r">${solEt === e[0] ? 'filtrando · clic para quitar' : 'clic para filtrar'}</div></div>`;
@@ -1452,10 +1453,10 @@ function pintarSol() {
   $('solTabla').innerHTML = filas.map(s => {
     const i = SOL.indexOf(s);
     const et = ETAPAS.find(e => e[0] === s.et);
-    const opts = ETAPAS.map(e => `<option value="${e[0]}"${e[0] === s.et ? ' selected' : ''}>${e[1]}</option>`).join('');
+    const opts = ETAPAS.map(e => `<option value="${e[0]}"${e[0] === s.et ? ' selected' : ''}>${e[1]}${ALTAS.includes(e[0]) && e[0] !== s.et ? ' → Clientes' : ''}</option>`).join('');
     const ropts = ['Sin asignar', 'Marta Díaz', 'Juan Ramírez'].map(r => `<option${r === s.r ? ' selected' : ''}>${r}</option>`).join('');
-    const alta = s.et === 'cerrada' ? `<button class="mini ok" onclick="pedirAlta(${i})">Pedir alta a Soporte ↗</button>`
-      : s.et === 'soporte' ? `<button class="mini" title="Corregir el número anotado" onclick="abrirAnotar(${i})" style="color:var(--amber)">${s.tk || 'Anotar ticket'}</button><button class="mini ok" onclick="irARegistrar(${i})">Registrar alta</button>`
+    const alta = s.et === 'demo' ? `<button class="mini ok" onclick="irARegistrar(${i})">Registrar alta</button>`
+      : s.et === 'soporte' ? `<span class="tbl-id" style="color:var(--amber)">${s.tk}</span><button class="mini ok" onclick="irARegistrar(${i})">Confirmar alta</button>`
       : s.et === 'alta' ? `<span class="tbl-id">${s.tk}</span>` : '';
     return `<tr><td class="tbl-email">${s.f}</td><td class="tbl-name">${esc(s.n)}</td><td class="tbl-email">${esc(s.e)}</td><td class="tbl-email">${s.p}</td>
       <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">${s.pr}</span></td>
@@ -1464,37 +1465,22 @@ function pintarSol() {
       <td><div class="rowact"><select class="sel" style="padding:5px 8px;font-size:11.5px" onchange="moverEtapa(${i},this.value)">${opts}</select>${alta}</div></td></tr>`;
   }).join('') || '<tr><td colspan="8" class="tbl-email" style="text-align:center;padding:22px">No hay solicitudes con este filtro.</td></tr>';
 }
-function pedirAlta(i) {
-  window.open(MESA, '_blank', 'noopener');
-  abrirAnotar(i);
-}
-let anotIdx = -1;
-function abrirAnotar(i) {
-  anotIdx = i;
-  $('aNombre').textContent = SOL[i].n + ' · ' + SOL[i].e + ' · ' + SOL[i].pr;
-  $('aTicket').value = SOL[i].tk || '';
-  $('mAnot').classList.add('open');
-  setTimeout(() => $('aTicket').focus(), 50);
-}
-function guardarAnotar() {
-  let tk = $('aTicket').value.trim().toUpperCase();
-  if (!/^#?T-\d{3,}$/.test(tk)) { aviso('Escribe el número que te dio Soporte (por ejemplo #T-0055)'); return; }
-  if (tk[0] !== '#') tk = '#' + tk;
-  SOL[anotIdx].tk = tk; SOL[anotIdx].et = 'soporte';
-  $('mAnot').classList.remove('open');
-  aviso('Ticket ' + tk + ' anotado. Cuando Soporte dé el OK, usa Registrar alta');
-  pintarSol();
-}
-let regIdx = -1;
+// ── Todo lo que sea alta se hace en Clientes → Registrar alta
+let regIdx = -1, regFila = null;
 function irARegistrar(i) {
   mostrar('clientes');
   abrirRegistro(i);
-  aviso('Para pasar a "Dada de alta" registra el alta aquí, en Clientes');
+  aviso('El alta se registra aquí, en Clientes');
 }
-function abrirRegistro(i) {
-  regIdx = i; const s = i >= 0 ? SOL[i] : {};
-  $('rOrigen').innerHTML = i >= 0 ? `Viene de la solicitud de <b style="color:var(--text)">${esc(s.n)}</b>. Al registrar, la solicitud pasa a <b style="color:var(--text)">Dada de alta</b>; si cancelas, se queda como está.` : '';
-  $('rOrigen').style.display = i >= 0 ? 'block' : 'none';
+function abrirRegistro(i, fila) {
+  regIdx = i; regFila = fila || (i >= 0 ? SOL[i].fila : null) || null;
+  const s = i >= 0 ? SOL[i] : (fila ? {
+      n: fila.children[1].textContent.trim(), c: fila.children[2].textContent.trim(),
+      pr: fila.children[3].textContent.trim().split(' · ')[0], tk: fila.children[4].textContent.trim(), e: '' } : {});
+  $('rOrigen').innerHTML = i >= 0
+    ? `Viene de la solicitud de <b style="color:var(--text)">${esc(s.n)}</b>. Al guardar, la solicitud pasa a <b style="color:var(--text)">Alta en Soporte</b> o <b style="color:var(--text)">Dada de alta</b> según lo que marques; si cancelas, queda como está.`
+    : fila ? `Confirmas el alta de <b style="color:var(--text)">${esc(s.n)}</b>, que estaba esperando a Soporte.` : '';
+  $('rOrigen').style.display = (i >= 0 || fila) ? 'block' : 'none';
   $('rTicket').value = s.tk || ''; $('rEmpresa').value = s.e || ''; $('rNombre').value = s.n || '';
   $('rCorreo').value = s.c || ''; $('rOk').checked = false;
   const pre = s.pr && s.pr !== 'PLATAFORMA T2' ? s.pr : 'VIAX';
@@ -1503,33 +1489,41 @@ function abrirRegistro(i) {
 }
 function cerrarRegistro() { $('mReg').classList.remove('open'); }
 function guardarRegistro() {
-  const tk = $('rTicket').value.trim(), nom = $('rNombre').value.trim(), cor = $('rCorreo').value.trim();
-  if (!/^#?T-\d{3,}$/i.test(tk)) { aviso('Escribe el número de ticket de Soporte (por ejemplo #T-0051)'); return; }
+  let tk = $('rTicket').value.trim().toUpperCase(); const nom = $('rNombre').value.trim(), cor = $('rCorreo').value.trim();
+  if (!/^#?T-\d{3,}$/.test(tk)) { aviso('Escribe el número de ticket que te dio Soporte (por ejemplo #T-0051)'); return; }
+  if (tk[0] !== '#') tk = '#' + tk;
   if (!nom || !cor) { aviso('Completa el usuario y su correo'); return; }
   const plats = [...document.querySelectorAll('#rPlats input:checked')].map(x => x.value);
   if (!plats.length) { aviso('Marca al menos una plataforma'); return; }
-  if (!$('rOk').checked) { aviso('Primero confirma que Soporte cerró el ticket con el alta lista'); return; }
-  const tb = document.querySelector('#v-clientes tbody');
-  const tr = document.createElement('tr');
+  const ok = $('rOk').checked;
+  const estado = ok ? '<span class="status st-active">ACTIVO</span>' : '<span class="status st-pending">ALTA EN SOPORTE</span>';
+  let tr = regFila;
+  if (!tr) {
+    tr = document.createElement('tr');
+    const tb = document.querySelector('#v-clientes tbody');
+    tb.insertBefore(tr, tb.firstChild);
+  }
   tr.innerHTML = `<td class="tbl-id">#C-0092</td><td class="tbl-name">${esc(nom)}</td><td class="tbl-email">${esc(cor)}</td>
     <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">${plats.join(' · ')}</span></td>
-    <td class="tbl-id" style="color:var(--amber)">${esc(tk.toUpperCase().replace(/^T/, '#T'))}</td><td class="tbl-email">Hoy</td><td class="tbl-email">Nunca</td>
-    <td><span class="status st-active">ACTIVO</span></td>
-    <td><div class="rowact"><button class="mini ok" onclick="mostrar('ficha')">Ficha</button><a class="mini" href="${MESA}" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td>`;
-  tb.insertBefore(tr, tb.firstChild);
-  const bt = document.querySelector('#v-bitacora tbody');
-  const br = document.createElement('tr');
-  br.innerHTML = `<td class="tbl-email">Ahora</td><td class="tbl-name">Juan Ramírez</td><td class="tbl-email">Registró alta</td><td class="tbl-name">${esc(nom)}</td><td class="tbl-email">${plats.join(', ')} · ticket ${esc(tk)} aprobado por Soporte</td>`;
-  bt.insertBefore(br, bt.firstChild);
-  if (regIdx >= 0) { SOL[regIdx].et = 'alta'; SOL[regIdx].tk = tk; pintarSol(); }
+    <td class="tbl-id" style="color:var(--amber)">${esc(tk)}</td><td class="tbl-email">Hoy</td><td class="tbl-email">Nunca</td>
+    <td>${estado}</td>
+    <td><div class="rowact"><button class="mini ok" onclick="mostrar('ficha')">Ficha</button><a class="mini" href="${MESA}" target="_blank" rel="noopener" style="text-decoration:none">Soporte ↗</a></div></td>`;
+  if (regIdx >= 0) { SOL[regIdx].et = ok ? 'alta' : 'soporte'; SOL[regIdx].tk = tk; SOL[regIdx].fila = tr; tr.dataset.sol = regIdx; pintarSol(); }
+  const accion = ok ? 'Registró alta' : 'Registró pedido de alta';
+  document.querySelector('#v-bitacora tbody').insertAdjacentHTML('afterbegin',
+    `<tr><td class="tbl-email">Ahora</td><td class="tbl-name">Juan Ramírez</td><td class="tbl-email">${accion}</td><td class="tbl-name">${esc(nom)}</td><td class="tbl-email">${plats.join(', ')} · ticket ${esc(tk)}${ok ? ' aprobado por Soporte' : ' esperando a Soporte'}</td></tr>`);
   pintarBloq();
   cerrarRegistro();
-  aviso('Alta registrada: ' + nom + ' ya aparece en Clientes');
+  aviso(ok ? 'Alta registrada: ' + nom + ' queda Activo' : nom + ' queda en Alta en Soporte hasta que confirmes el OK');
+}
+function confirmarDesdeFila(tr) {
+  const k = tr.dataset.sol;
+  if (k != null && k !== '') abrirRegistro(+k); else abrirRegistro(-1, tr);
 }
 function filtrarEtapa(e) { solEt = solEt === e ? '' : e; pintarSol(); }
 function moverEtapa(i, e) {
-  if (e === 'soporte' && !SOL[i].tk) { pintarSol(); abrirAnotar(i); return; }
-  if (e === 'alta' && SOL[i].et !== 'alta') { pintarSol(); irARegistrar(i); return; }
+  if (ALTAS.includes(e) && SOL[i].et !== e) { pintarSol(); irARegistrar(i); return; }
+  if (ALTAS.includes(SOL[i].et) && !ALTAS.includes(e)) { pintarSol(); aviso('Ya tiene un alta registrada en Clientes: los cambios de cuenta se piden a Soporte'); return; }
   SOL[i].et = e;
   const nom = ETAPAS.find(x => x[0] === e)[1];
   aviso(SOL[i].n + ' pasó a ' + nom + ' · queda en la bitácora');
@@ -1744,6 +1738,7 @@ function pintarBloq() {
     const bloq = /BLOQUEADO/.test(tr.children[7].textContent);
     let b = ra.querySelector('.bq');
     if (!b) { b = document.createElement('button'); b.className = 'mini bq'; ra.appendChild(b); }
+    if (/ALTA EN SOPORTE/.test(tr.children[7].textContent)) { b.className = 'mini bq ok'; b.textContent = 'Confirmar alta'; b.onclick = () => confirmarDesdeFila(tr); return; }
     b.className = 'mini bq ' + (bloq ? 'ok' : 'warn');
     b.textContent = bloq ? 'Registrar desbloqueo' : 'Registrar bloqueo';
     b.onclick = () => abrirCta(bloq ? 'desbloqueo' : 'bloqueo', nom);
