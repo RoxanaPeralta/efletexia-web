@@ -477,7 +477,6 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
       <a class="sb-item" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" title="Abre la mesa de ayuda en otra pestaña">
         <svg class="sb-icon" viewBox="0 0 18 18" fill="none"><path d="M3.5 9.5V8a5.5 5.5 0 0 1 11 0v1.5" stroke="currentColor" stroke-width="1.2"/><rect x="2.5" y="9.5" width="3" height="4.5" rx="1" stroke="currentColor" stroke-width="1.1"/><rect x="12.5" y="9.5" width="3" height="4.5" rx="1" stroke="currentColor" stroke-width="1.1"/><path d="M14 14c0 1.3-1.5 2-4 2" stroke="currentColor" stroke-width="1.1"/></svg>
         Soporte
-        <span class="sb-pill">7</span>
         <span class="ext">↗</span>
       </a>
       <a class="sb-item" href="#" data-view="comentarios" onclick="irA(this);return false">
@@ -534,8 +533,8 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
         <div class="kpi-val"><span>9</span></div><div class="kpi-delta delta-up">▲ 3 sin responsable</div><div class="kpi-glow"></div></div>
       <div class="kpi" style="cursor:pointer" onclick="irAVista('accesos')"><div class="kpi-top"><div class="kpi-label">Cuentas bloqueadas</div></div>
         <div class="kpi-val"><span>2</span></div><div class="kpi-delta delta-dn">▼ desbloqueo vía Soporte</div><div class="kpi-glow"></div></div>
-      <a class="kpi" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="kpi-top"><div class="kpi-label">Tickets abiertos ↗</div></div>
-        <div class="kpi-val"><span>7</span></div><div class="kpi-delta delta-dn">▼ 2 de prioridad alta · desde la mesa de ayuda</div><div class="kpi-glow"></div></a>
+      <div class="kpi" style="cursor:pointer" onclick="irAVista('solicitudes');filtrarEtapa('soporte')"><div class="kpi-top"><div class="kpi-label">Altas esperando a Soporte</div></div>
+        <div class="kpi-val"><span>2</span></div><div class="kpi-delta delta-dn">▼ con ticket anotado, sin OK todavía</div><div class="kpi-glow"></div></div>
       <div class="kpi" style="cursor:pointer" onclick="irAVista('comentarios')"><div class="kpi-top"><div class="kpi-label">Comentarios por aprobar</div></div>
         <div class="kpi-val"><span>4</span></div><div class="kpi-delta delta-dn">▼ pendientes de revisión</div><div class="kpi-glow"></div></div>
     </div>
@@ -755,16 +754,16 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
         </div>
 
         <div class="card">
-          <div class="card-hdr"><div class="card-title">Tickets de Soporte</div><a class="card-action" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">VER EN LA MESA DE AYUDA ↗</a></div>
+          <div class="card-hdr"><div class="card-title">Tickets anotados</div><a class="card-action" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">VER EN LA MESA DE AYUDA ↗</a></div>
           <table class="tbl">
-            <thead><tr><th>Ticket</th><th>Pedido</th><th>Pidió</th><th>Fecha</th><th>Estado</th></tr></thead>
+            <thead><tr><th>Ticket</th><th>Pedido</th><th>Anotó</th><th>Fecha</th></tr></thead>
             <tbody>
-              <tr><td class="tbl-id">#T-0049</td><td class="tbl-name">Cambio de contraseña</td><td class="tbl-email">El cliente</td><td class="tbl-email">02 oct</td><td><span class="status st-active">RESUELTO</span></td></tr>
-              <tr><td class="tbl-id">#T-0044</td><td class="tbl-name">Alta en Viax</td><td class="tbl-email">Marta Díaz (marketing)</td><td class="tbl-email">01 sep</td><td><span class="status st-active">RESUELTO</span></td></tr>
-              <tr><td class="tbl-id">#T-0031</td><td class="tbl-name">Alta en Qubo</td><td class="tbl-email">Marta Díaz (marketing)</td><td class="tbl-email">10 ago</td><td><span class="status st-active">RESUELTO</span></td></tr>
+              <tr><td class="tbl-id">#T-0049</td><td class="tbl-name">Cambio de contraseña</td><td class="tbl-email">Juan Ramírez (desde el aviso del cliente)</td><td class="tbl-email">02 oct</td></tr>
+              <tr><td class="tbl-id">#T-0044</td><td class="tbl-name">Alta en Viax</td><td class="tbl-email">Marta Díaz (marketing)</td><td class="tbl-email">01 sep</td></tr>
+              <tr><td class="tbl-id">#T-0031</td><td class="tbl-name">Alta en Qubo</td><td class="tbl-email">Marta Díaz (marketing)</td><td class="tbl-email">10 ago</td></tr>
             </tbody>
           </table>
-          <div class="hint">Las cuentas las crea y cambia <b>Soporte</b> en sus propios sistemas. Los usuarios del equipo del cliente se administran <b>dentro de cada plataforma</b>.</div>
+          <div class="hint">La mesa de ayuda <b>no está conectada</b>: los números de ticket se anotan a mano y el estado de cada uno se ve en la mesa de ayuda. Las cuentas las crea y cambia <b>Soporte</b> en sus propios sistemas. Los usuarios del equipo del cliente se administran <b>dentro de cada plataforma</b>.</div>
         </div>
       </div>
 
@@ -969,11 +968,11 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
       <div class="card">
         <div class="card-hdr"><div class="card-title">Cuentas bloqueadas</div></div>
         <table class="tbl">
-          <thead><tr><th>Cliente</th><th>Motivo</th><th>Desde</th><th>Ticket</th></tr></thead>
+          <thead><tr><th>Cliente</th><th>Motivo</th><th>Desde</th><th>Acción</th></tr></thead>
           <tbody>
             <tr><td class="tbl-name">Diego Fuentes</td><td class="tbl-email">3 intentos fallidos</td>
               <td class="tbl-email">Hoy · 09:42</td>
-              <td><span class="status st-blue">#T-0053 EN CURSO</span></td></tr>
+              <td><div class="rowact"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td></tr>
             <tr><td class="tbl-name">Nadia Ocampo</td><td class="tbl-email">Captcha no superado</td>
               <td class="tbl-email">Hoy · 09:10</td>
               <td><div class="rowact"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td></tr>
@@ -1289,6 +1288,18 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
   </div>
 </div>
 
+
+<div class="modal-overlay" id="mAnot" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal" style="width:440px">
+    <div class="modal-hdr"><div class="modal-title">Anotar ticket de Soporte</div><button class="modal-close" onclick="$('mAnot').classList.remove('open')">✕</button></div>
+    <div class="modal-body">
+      <p style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px">Abrimos la <a href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="color:var(--amber)">mesa de ayuda</a> en otra pestaña. Crea ahí el ticket pidiendo el alta y anota aquí el número que te dio. <b style="color:var(--text)">La mesa de ayuda no está conectada</b>: el número se escribe a mano.</p>
+      <div class="fld"><label>Solicitud</label><div id="aNombre" style="font-size:13px;font-weight:700"></div></div>
+      <div class="fld"><label>Número de ticket</label><input class="inp" id="aTicket" placeholder="#T-0000" onkeydown="if(event.key==='Enter')guardarAnotar()"></div>
+      <div style="display:flex;justify-content:flex-end;gap:10px"><button class="btn-sm btn-sm-ghost" onclick="$('mAnot').classList.remove('open')">Más tarde</button><button class="btn-sm btn-sm-primary" onclick="guardarAnotar()">Anotar ticket</button></div>
+    </div>
+  </div>
+</div>
 <script>
 // ── Navegación entre vistas
 var PADRE = { ficha: 'clientes', landing: 'productos' };
@@ -1397,7 +1408,6 @@ pintarAnalitica();
 // ── Solicitudes como embudo
 const MESA = 'https://portal-usuarios.dtdevops.com/';
 const ETAPAS = [['nueva', 'Nueva', 'st-pending'], ['contactada', 'Contactada', 'st-blue'], ['demo', 'Demo', 'st-purple'], ['cerrada', 'Cerrada', 'st-active'], ['soporte', 'Alta en Soporte', 'st-pending'], ['alta', 'Dada de alta', 'st-active'], ['sin', 'Sin interés', 'st-inactive']];
-let ticketSig = 54;
 const SOL = [
   { f: 'Hoy · 09:20', n: 'Jorge Lazo', e: 'Andina Cargo', p: 'Perú', pr: 'QUBO', r: 'Sin asignar', et: 'nueva' },
   { f: 'Hoy · 08:05', n: 'Rocío Paredes', e: 'Distribuidora Sur', p: 'Ecuador', pr: 'EFLETEXIA BI', r: 'Sin asignar', et: 'nueva' },
@@ -1426,7 +1436,7 @@ function pintarSol() {
     const opts = ETAPAS.map(e => `<option value="${e[0]}"${e[0] === s.et ? ' selected' : ''}>${e[1]}</option>`).join('');
     const ropts = ['Sin asignar', 'Marta Díaz', 'Juan Ramírez'].map(r => `<option${r === s.r ? ' selected' : ''}>${r}</option>`).join('');
     const alta = s.et === 'cerrada' ? `<button class="mini ok" onclick="pedirAlta(${i})">Pedir alta a Soporte ↗</button>`
-      : s.et === 'soporte' ? `<span class="tbl-id" style="color:var(--amber)">${s.tk}</span><button class="mini ok" onclick="abrirRegistro(${i})">Registrar alta</button>`
+      : s.et === 'soporte' ? `<button class="mini" title="Corregir el número anotado" onclick="abrirAnotar(${i})" style="color:var(--amber)">${s.tk || 'Anotar ticket'}</button><button class="mini ok" onclick="abrirRegistro(${i})">Registrar alta</button>`
       : s.et === 'alta' ? `<span class="tbl-id">${s.tk}</span>` : '';
     return `<tr><td class="tbl-email">${s.f}</td><td class="tbl-name">${esc(s.n)}</td><td class="tbl-email">${esc(s.e)}</td><td class="tbl-email">${s.p}</td>
       <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">${s.pr}</span></td>
@@ -1436,10 +1446,24 @@ function pintarSol() {
   }).join('') || '<tr><td colspan="8" class="tbl-email" style="text-align:center;padding:22px">No hay solicitudes con este filtro.</td></tr>';
 }
 function pedirAlta(i) {
-  const s = SOL[i];
-  s.tk = '#T-' + String(ticketSig++).padStart(4, '0'); s.et = 'soporte';
   window.open(MESA, '_blank', 'noopener');
-  aviso('Ticket ' + s.tk + ' abierto en Soporte para el alta de ' + s.n);
+  abrirAnotar(i);
+}
+let anotIdx = -1;
+function abrirAnotar(i) {
+  anotIdx = i;
+  $('aNombre').textContent = SOL[i].n + ' · ' + SOL[i].e + ' · ' + SOL[i].pr;
+  $('aTicket').value = SOL[i].tk || '';
+  $('mAnot').classList.add('open');
+  setTimeout(() => $('aTicket').focus(), 50);
+}
+function guardarAnotar() {
+  let tk = $('aTicket').value.trim().toUpperCase();
+  if (!/^#?T-\d{3,}$/.test(tk)) { aviso('Escribe el número que te dio la mesa de ayuda (por ejemplo #T-0055)'); return; }
+  if (tk[0] !== '#') tk = '#' + tk;
+  SOL[anotIdx].tk = tk; SOL[anotIdx].et = 'soporte';
+  $('mAnot').classList.remove('open');
+  aviso('Ticket ' + tk + ' anotado. Cuando Soporte dé el OK, usa Registrar alta');
   pintarSol();
 }
 let regIdx = -1;
@@ -1473,6 +1497,7 @@ function guardarRegistro() {
 }
 function filtrarEtapa(e) { solEt = solEt === e ? '' : e; pintarSol(); }
 function moverEtapa(i, e) {
+  if (e === 'soporte' && !SOL[i].tk) { pintarSol(); abrirAnotar(i); return; }
   SOL[i].et = e;
   const nom = ETAPAS.find(x => x[0] === e)[1];
   aviso(SOL[i].n + ' pasó a ' + nom + ' · queda en la bitácora');
