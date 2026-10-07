@@ -740,17 +740,12 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
     <div class="content-grid" style="padding-top:20px">
       <div>
         <div class="card" style="margin-bottom:14px">
-          <div class="card-hdr"><div class="card-title">Productos contratados</div><button class="card-action" onclick="abrirRegistro(-1)">+ REGISTRAR OTRO PRODUCTO</button></div>
-          <div class="pad">
-            <div class="prod-c">
-              <div style="display:flex;justify-content:space-between;align-items:center"><b>QUBO</b><span class="status st-active">ACTIVO</span></div>
-              <div class="ps">Alta registrada el 12 ago 2026 · ticket <b style="color:var(--text);font-family:inherit;font-size:inherit">#T-0031</b> aprobado por Soporte</div>
-            </div>
-            <div class="prod-c">
-              <div style="display:flex;justify-content:space-between;align-items:center"><b>VIAX</b><span class="status st-active">ACTIVO</span></div>
-              <div class="ps">Alta registrada el 03 sep 2026 · ticket <b style="color:var(--text);font-family:inherit;font-size:inherit">#T-0044</b> aprobado por Soporte</div>
-            </div>
-          </div>
+          <div class="card-hdr"><div class="card-title">Plataformas con acceso</div><button class="card-action" onclick="abrirPlat('alta')">+ REGISTRAR ACCESO A OTRA PLATAFORMA</button></div>
+          <table class="tbl">
+            <thead><tr><th>Plataforma</th><th>Estado</th><th>Ticket de Soporte</th><th>Desde</th><th>Acciones</th></tr></thead>
+            <tbody id="fPlats"></tbody>
+          </table>
+          <div class="hint">Soporte da y quita los accesos en sus sistemas. Aquí marketing <b>solo registra</b> lo que Soporte ya hizo, siempre con el número de ticket.</div>
         </div>
 
         <div class="card">
@@ -866,13 +861,13 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
         <button class="fbtn">Alta en Soporte</button>
       </div>
       <table class="tbl">
-        <thead><tr><th>ID</th><th>Nombre</th><th>Correo</th><th>Producto</th><th>Ticket de alta</th><th>Alta</th><th>Último acceso</th><th>Acceso</th><th>Acciones</th></tr></thead>
+        <thead><tr><th>ID</th><th>Nombre</th><th>Correo</th><th>Plataformas</th><th>Ticket de alta</th><th>Alta</th><th>Último acceso</th><th>Acceso</th><th>Acciones</th></tr></thead>
         <tbody>
               <tr>
                 <td class="tbl-id">#C-0091</td>
                 <td class="tbl-name">Carlos López</td>
                 <td class="tbl-email">carlos.lopez@gmail.com</td>
-                <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">QUBO</span></td>
+                <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">QUBO · VIAX</span></td>
                 <td class="tbl-id" style="color:var(--amber)">#T-0031</td>
                 <td class="tbl-email">12 ago 2026</td>
                 <td><span class="status st-active">ACTIVO</span></td>
@@ -1276,7 +1271,7 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
       <div class="fld"><label>Ticket de Soporte</label><input class="inp" id="rTicket" placeholder="#T-0000"></div>
       <div class="twocol" style="gap:12px">
         <div class="fld"><label>Cliente / empresa</label><input class="inp" id="rEmpresa"></div>
-        <div class="fld"><label>Producto</label><select class="inp" id="rProd"><option>VIAX</option><option>QUBO</option><option>FLETEX</option><option>EFLETEXIA BI</option><option>EFLEXY</option></select></div>
+        <div class="fld"><label>Plataformas con acceso</label><div id="rPlats" style="display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;padding-top:4px"></div></div>
       </div>
       <div class="twocol" style="gap:12px">
         <div class="fld"><label>Usuario dado de alta</label><input class="inp" id="rNombre"></div>
@@ -1297,6 +1292,20 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
       <div class="fld"><label>Solicitud</label><div id="aNombre" style="font-size:13px;font-weight:700"></div></div>
       <div class="fld"><label>Número de ticket</label><input class="inp" id="aTicket" placeholder="#T-0000" onkeydown="if(event.key==='Enter')guardarAnotar()"></div>
       <div style="display:flex;justify-content:flex-end;gap:10px"><button class="btn-sm btn-sm-ghost" onclick="$('mAnot').classList.remove('open')">Más tarde</button><button class="btn-sm btn-sm-primary" onclick="guardarAnotar()">Anotar ticket</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="mPlat" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal" style="width:460px">
+    <div class="modal-hdr"><div class="modal-title" id="pTitulo">Registrar acceso</div><button class="modal-close" onclick="$('mPlat').classList.remove('open')">✕</button></div>
+    <div class="modal-body">
+      <p style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px" id="pTexto"></p>
+      <div class="fld"><label>Cliente</label><div style="font-size:13px;font-weight:700">Carlos López · Transportes Colón</div></div>
+      <div class="fld" id="pPlatFld"><label>Plataforma</label><select class="inp" id="pPlat"></select></div>
+      <div class="fld"><label>Ticket de Soporte</label><input class="inp" id="pTicket" placeholder="#T-0000"></div>
+      <label style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text);margin:4px 0 16px;cursor:pointer"><input type="checkbox" id="pOk" style="margin-top:2px;accent-color:#22c55e"><span id="pOkTxt"></span></label>
+      <div style="display:flex;justify-content:flex-end;gap:10px"><button class="btn-sm btn-sm-ghost" onclick="$('mPlat').classList.remove('open')">Cancelar</button><button class="btn-sm btn-sm-primary" onclick="guardarPlat()" id="pBtn">Registrar</button></div>
     </div>
   </div>
 </div>
@@ -1470,7 +1479,9 @@ let regIdx = -1;
 function abrirRegistro(i) {
   regIdx = i; const s = i >= 0 ? SOL[i] : {};
   $('rTicket').value = s.tk || ''; $('rEmpresa').value = s.e || ''; $('rNombre').value = s.n || '';
-  $('rCorreo').value = s.c || ''; $('rProd').value = s.pr && s.pr !== 'PLATAFORMA T2' ? s.pr : 'VIAX'; $('rOk').checked = false;
+  $('rCorreo').value = s.c || ''; $('rOk').checked = false;
+  const pre = s.pr && s.pr !== 'PLATAFORMA T2' ? s.pr : 'VIAX';
+  $('rPlats').innerHTML = PLATS.map(x => `<label style="display:flex;gap:6px;align-items:center;cursor:pointer"><input type="checkbox" value="${x}"${x === pre ? ' checked' : ''} style="accent-color:#FF6B1A">${x}</label>`).join('');
   $('mReg').classList.add('open');
 }
 function cerrarRegistro() { $('mReg').classList.remove('open'); }
@@ -1478,18 +1489,20 @@ function guardarRegistro() {
   const tk = $('rTicket').value.trim(), nom = $('rNombre').value.trim(), cor = $('rCorreo').value.trim();
   if (!/^#?T-\d{3,}$/i.test(tk)) { aviso('Escribe el número de ticket de Soporte (por ejemplo #T-0051)'); return; }
   if (!nom || !cor) { aviso('Completa el usuario y su correo'); return; }
+  const plats = [...document.querySelectorAll('#rPlats input:checked')].map(x => x.value);
+  if (!plats.length) { aviso('Marca al menos una plataforma'); return; }
   if (!$('rOk').checked) { aviso('Primero confirma que Soporte cerró el ticket con el alta lista'); return; }
   const tb = document.querySelector('#v-clientes tbody');
   const tr = document.createElement('tr');
   tr.innerHTML = `<td class="tbl-id">#C-0092</td><td class="tbl-name">${esc(nom)}</td><td class="tbl-email">${esc(cor)}</td>
-    <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">${$('rProd').value}</span></td>
+    <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">${plats.join(' · ')}</span></td>
     <td class="tbl-id" style="color:var(--amber)">${esc(tk.toUpperCase().replace(/^T/, '#T'))}</td><td class="tbl-email">Hoy</td><td class="tbl-email">Nunca</td>
     <td><span class="status st-active">ACTIVO</span></td>
     <td><div class="rowact"><button class="mini ok" onclick="mostrar('ficha')">Ficha</button><a class="mini" href="${MESA}" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td>`;
   tb.insertBefore(tr, tb.firstChild);
   const bt = document.querySelector('#v-bitacora tbody');
   const br = document.createElement('tr');
-  br.innerHTML = `<td class="tbl-email">Ahora</td><td class="tbl-name">Juan Ramírez</td><td class="tbl-email">Registró alta</td><td class="tbl-name">${esc(nom)}</td><td class="tbl-email">${$('rProd').value} · ticket ${esc(tk)} aprobado por Soporte</td>`;
+  br.innerHTML = `<td class="tbl-email">Ahora</td><td class="tbl-name">Juan Ramírez</td><td class="tbl-email">Registró alta</td><td class="tbl-name">${esc(nom)}</td><td class="tbl-email">${plats.join(', ')} · ticket ${esc(tk)} aprobado por Soporte</td>`;
   bt.insertBefore(br, bt.firstChild);
   if (regIdx >= 0) { SOL[regIdx].et = 'alta'; SOL[regIdx].tk = tk; pintarSol(); }
   cerrarRegistro();
@@ -1614,6 +1627,72 @@ function publicarLanding() {
   $('edEdit').textContent = 'Publicada por Juan Ramírez · ahora';
   aviso('Landing de Viax publicada · queda en la bitácora');
 }
+
+// ── Plataformas con acceso de un cliente (registro de lo que Soporte ya hizo)
+const PLATS = ['VIAX', 'QUBO', 'FLETEX', 'EFLETEXIA BI', 'EFLEXY'];
+const FICHA = [
+  { p: 'QUBO', st: 'activo', tk: '#T-0031', f: '12 ago 2026' },
+  { p: 'VIAX', st: 'activo', tk: '#T-0044', f: '03 sep 2026' }
+];
+let platModo = 'alta', platIdx = -1;
+function pintarFicha() {
+  $('fPlats').innerHTML = FICHA.map((x, i) => `<tr>
+    <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">${x.p}</span></td>
+    <td><span class="status ${x.st === 'activo' ? 'st-active' : 'st-inactive'}">${x.st === 'activo' ? 'ACTIVO' : 'RETIRADO'}</span></td>
+    <td class="tbl-id">${x.tk}${x.tkR ? ' · retiro ' + x.tkR : ''}</td>
+    <td class="tbl-email">${x.st === 'activo' ? x.f : 'hasta ' + x.fR}</td>
+    <td>${x.st === 'activo' ? `<button class="mini warn" onclick="abrirPlat('retiro',${i})">Registrar retiro</button>` : ''}</td></tr>`).join('');
+  const act = FICHA.filter(x => x.st === 'activo').map(x => x.p).join(' · ') || '—';
+  document.querySelectorAll('#v-clientes tbody tr').forEach(tr => {
+    if (tr.children[2] && tr.children[2].textContent.trim() === 'carlos.lopez@gmail.com') tr.children[3].querySelector('span').textContent = act;
+  });
+}
+function abrirPlat(modo, i) {
+  platModo = modo; platIdx = i == null ? -1 : i;
+  $('pTicket').value = ''; $('pOk').checked = false;
+  if (modo === 'alta') {
+    const libres = PLATS.filter(p => !FICHA.some(x => x.p === p && x.st === 'activo'));
+    if (!libres.length) { aviso('Este cliente ya tiene acceso a las 5 plataformas'); return; }
+    $('pTitulo').textContent = 'Registrar acceso a otra plataforma';
+    $('pTexto').innerHTML = 'Para cuando el cliente adquiere otro producto. Primero <b>Soporte</b> le da el acceso con un ticket; después lo registras aquí.';
+    $('pPlatFld').style.display = 'block';
+    $('pPlat').innerHTML = libres.map(p => `<option>${p}</option>`).join('');
+    $('pOkTxt').textContent = 'Confirmo que Soporte ya le dio el acceso';
+    $('pBtn').textContent = 'Registrar acceso';
+  } else {
+    $('pTitulo').textContent = 'Registrar retiro de ' + FICHA[platIdx].p;
+    $('pTexto').innerHTML = 'Cuando el cliente deja un producto. <b>Soporte</b> le quita el acceso con un ticket; aquí solo queda registrado.';
+    $('pPlatFld').style.display = 'none';
+    $('pOkTxt').textContent = 'Confirmo que Soporte ya le quitó el acceso';
+    $('pBtn').textContent = 'Registrar retiro';
+  }
+  $('mPlat').classList.add('open');
+}
+function guardarPlat() {
+  let tk = $('pTicket').value.trim().toUpperCase();
+  if (!/^#?T-\d{3,}$/.test(tk)) { aviso('Escribe el número de ticket de Soporte (por ejemplo #T-0062)'); return; }
+  if (tk[0] !== '#') tk = '#' + tk;
+  if (!$('pOk').checked) { aviso('Primero confirma lo que hizo Soporte'); return; }
+  let plat, accion;
+  if (platModo === 'alta') {
+    plat = $('pPlat').value; accion = 'Registró acceso';
+    const prev = FICHA.find(x => x.p === plat);
+    if (prev) Object.assign(prev, { st: 'activo', tk, f: 'hoy', tkR: null }); else FICHA.push({ p: plat, st: 'activo', tk, f: 'hoy' });
+  } else {
+    const x = FICHA[platIdx]; plat = x.p; accion = 'Registró retiro';
+    x.st = 'retirado'; x.tkR = tk; x.fR = 'hoy';
+  }
+  const bt = document.querySelector('#v-bitacora tbody');
+  const br = document.createElement('tr');
+  br.innerHTML = `<td class="tbl-email">Ahora</td><td class="tbl-name">Juan Ramírez</td><td class="tbl-email">${accion}</td><td class="tbl-name">Carlos López</td><td class="tbl-email">${plat} · ticket ${tk} de Soporte</td>`;
+  bt.insertBefore(br, bt.firstChild);
+  const tl = document.querySelector('#v-ficha .tl');
+  tl.insertAdjacentHTML('afterbegin', `<div class="tl-i"><div class="tl-d">AHORA</div><div class="tl-t">Juan Ramírez ${accion.toLowerCase()} en <b>${plat}</b> · ticket ${tk}</div></div>`);
+  $('mPlat').classList.remove('open');
+  aviso(accion + ': ' + plat + ' · queda en la ficha y en la bitácora');
+  pintarFicha();
+}
+pintarFicha();
 editarLanding('viax'); mostrar('resumen');
 </script>
 
