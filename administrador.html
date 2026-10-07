@@ -526,14 +526,14 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
         <div class="ph-title">Lo urgente de hoy</div>
         <div class="ph-sub">Lo que espera una acción del equipo y los clientes con acceso.</div>
       </div>
-      <div class="ph-actions"><button class="btn-sm btn-sm-ghost">Exportar</button><button class="btn-sm btn-sm-primary">+ Nuevo cliente</button></div>
+      <div class="ph-actions"><button class="btn-sm btn-sm-ghost">Exportar</button><a class="btn-sm btn-sm-primary" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Abrir ticket en Soporte ↗</a></div>
     </div>
 
     <div class="kpi-row">
       <div class="kpi" style="cursor:pointer" onclick="irAVista('solicitudes')"><div class="kpi-top"><div class="kpi-label">Solicitudes nuevas</div></div>
         <div class="kpi-val"><span>9</span></div><div class="kpi-delta delta-up">▲ 3 sin responsable</div><div class="kpi-glow"></div></div>
       <div class="kpi" style="cursor:pointer" onclick="irAVista('accesos')"><div class="kpi-top"><div class="kpi-label">Cuentas bloqueadas</div></div>
-        <div class="kpi-val"><span>2</span></div><div class="kpi-delta delta-dn">▼ requieren desbloqueo</div><div class="kpi-glow"></div></div>
+        <div class="kpi-val"><span>2</span></div><div class="kpi-delta delta-dn">▼ desbloqueo vía Soporte</div><div class="kpi-glow"></div></div>
       <a class="kpi" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="kpi-top"><div class="kpi-label">Tickets abiertos ↗</div></div>
         <div class="kpi-val"><span>7</span></div><div class="kpi-delta delta-dn">▼ 2 de prioridad alta · desde la mesa de ayuda</div><div class="kpi-glow"></div></a>
       <div class="kpi" style="cursor:pointer" onclick="irAVista('comentarios')"><div class="kpi-top"><div class="kpi-label">Comentarios por aprobar</div></div>
@@ -554,7 +554,7 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
                 <td class="tbl-email">carlos.lopez@gmail.com</td>
                 <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">QUBO</span></td>
                 <td><span class="status st-active">ACTIVO</span></td>
-                <td><div class="rowact"><button class="mini">Resetear</button><button class="mini warn">Bloquear</button></div></td>
+                <td><div class="rowact"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td>
               </tr>
               <tr>
                 <td class="tbl-id">#C-0090</td>
@@ -562,7 +562,7 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
                 <td class="tbl-email">m.torres@logco.pe</td>
                 <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">FLETEX</span></td>
                 <td><span class="status st-active">ACTIVO</span></td>
-                <td><div class="rowact"><button class="mini">Resetear</button><button class="mini warn">Bloquear</button></div></td>
+                <td><div class="rowact"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td>
               </tr>
               <tr>
                 <td class="tbl-id">#C-0089</td>
@@ -570,15 +570,15 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
                 <td class="tbl-email">d.fuentes@transp.co</td>
                 <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">VIAX</span></td>
                 <td><span class="status st-blocked">BLOQUEADO</span></td>
-                <td><div class="rowact"><button class="mini ok">Desbloquear</button><button class="mini">Resetear</button></div></td>
+                <td><div class="rowact"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td>
               </tr>
               <tr>
                 <td class="tbl-id">#C-0088</td>
                 <td class="tbl-name">Ana Ríos</td>
                 <td class="tbl-email">ana.rios@fletex.ec</td>
                 <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">EFLETEXIA BI</span></td>
-                <td><span class="status st-pending">CLAVE PENDIENTE</span></td>
-                <td><div class="rowact"><button class="mini ok">Enviar clave</button><button class="mini warn">Bloquear</button></div></td>
+                <td><span class="status st-pending">ALTA EN SOPORTE</span></td>
+                <td><div class="rowact"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td>
               </tr>
               <tr>
                 <td class="tbl-id">#C-0087</td>
@@ -586,7 +586,7 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
                 <td class="tbl-email">luis.m@cargo.gt</td>
                 <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">EFLEXY</span></td>
                 <td><span class="status st-inactive">INACTIVO</span></td>
-                <td><div class="rowact"><button class="mini">Resetear</button><button class="mini ok">Activar</button></div></td>
+                <td><div class="rowact"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td>
               </tr>
             </tbody>
           </table>
@@ -621,7 +621,7 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
               </tr>
             </tbody>
           </table>
-          <div class="hint">Al <b>tercer intento fallido</b> la cuenta se bloquea sola y solo el administrador puede liberarla. El captcha no superado cuenta como intento.</div>
+          <div class="hint">Al <b>tercer intento fallido</b> la cuenta se bloquea sola y solo <b>Soporte</b> puede liberarla, con un ticket. El captcha no superado cuenta como intento.</div>
         </div>
       </div>
 
@@ -721,7 +721,7 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
         <div class="card">
           <div class="card-hdr"><div class="card-title">Uso de cuentas</div></div>
           <div class="mini-kpis" id="anUso"></div>
-          <div class="hint">Un cliente <b>activo</b> entró al menos una vez en el rango. Las subcuentas cuentan contra el tope de cada solución.</div>
+          <div class="hint">Un cliente <b>activo</b> entró al menos una vez en el rango. Los usuarios de su equipo se administran dentro de cada plataforma.</div>
         </div>
       </div>
       <div class="hint" style="border:none;padding:12px 0 0">Datos de ejemplo de la maqueta. En la plataforma salen de Solicitudes, Clientes y los accesos registrados.</div>
@@ -733,41 +733,38 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
       <div class="ph-left">
         <div class="ph-crumb">Panel / <a href="#" onclick="irAVista('clientes');return false" style="color:inherit">Clientes</a> / <span>Carlos López</span></div>
         <div class="ph-title">Ficha del cliente</div>
-        <div class="ph-sub">Todo lo de un cliente en un solo lugar: productos, usuarios, último acceso e historial.</div>
+        <div class="ph-sub">Todo lo de un cliente en un solo lugar: productos, tickets de alta, último acceso e historial.</div>
       </div>
-      <div class="ph-actions"><button class="btn-sm btn-sm-ghost" onclick="irAVista('clientes')">← Volver</button><button class="btn-sm btn-sm-primary">Editar cliente</button></div>
+      <div class="ph-actions"><button class="btn-sm btn-sm-ghost" onclick="irAVista('clientes')">← Volver</button><a class="btn-sm btn-sm-primary" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir cambio a Soporte ↗</a></div>
     </div>
 
     <div class="content-grid" style="padding-top:20px">
       <div>
         <div class="card" style="margin-bottom:14px">
-          <div class="card-hdr"><div class="card-title">Productos contratados</div><button class="card-action">+ AGREGAR PRODUCTO</button></div>
+          <div class="card-hdr"><div class="card-title">Productos contratados</div><button class="card-action" onclick="abrirRegistro(-1)">+ REGISTRAR OTRO PRODUCTO</button></div>
           <div class="pad">
             <div class="prod-c">
               <div style="display:flex;justify-content:space-between;align-items:center"><b>QUBO</b><span class="status st-active">ACTIVO</span></div>
-              <div class="ps">Desde 12 ago 2026 · Usuarios <b style="color:var(--text);font-family:inherit;font-size:inherit">4 de 10</b></div>
-              <div class="uso"><i style="width:40%"></i></div>
+              <div class="ps">Alta registrada el 12 ago 2026 · ticket <b style="color:var(--text);font-family:inherit;font-size:inherit">#T-0031</b> aprobado por Soporte</div>
             </div>
             <div class="prod-c">
               <div style="display:flex;justify-content:space-between;align-items:center"><b>VIAX</b><span class="status st-active">ACTIVO</span></div>
-              <div class="ps">Desde 03 sep 2026 · Usuarios <b style="color:var(--text);font-family:inherit;font-size:inherit">9 de 10</b> · cerca del tope</div>
-              <div class="uso"><i style="width:90%"></i></div>
+              <div class="ps">Alta registrada el 03 sep 2026 · ticket <b style="color:var(--text);font-family:inherit;font-size:inherit">#T-0044</b> aprobado por Soporte</div>
             </div>
           </div>
         </div>
 
         <div class="card">
-          <div class="card-hdr"><div class="card-title">Usuarios del cliente</div></div>
+          <div class="card-hdr"><div class="card-title">Tickets de Soporte</div><a class="card-action" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">VER EN LA MESA DE AYUDA ↗</a></div>
           <table class="tbl">
-            <thead><tr><th>Nombre</th><th>Producto</th><th>Módulos</th><th>Último acceso</th><th>Estado</th></tr></thead>
+            <thead><tr><th>Ticket</th><th>Pedido</th><th>Pidió</th><th>Fecha</th><th>Estado</th></tr></thead>
             <tbody>
-              <tr><td class="tbl-name">Carlos López <span class="tbl-email">(titular)</span></td><td class="tbl-email">Qubo · Viax</td><td class="tbl-email">Todos</td><td class="tbl-email">Hoy · 08:12</td><td><span class="status st-active">ACTIVO</span></td></tr>
-              <tr><td class="tbl-name">Daniela Ponce</td><td class="tbl-email">Qubo</td><td class="tbl-email">Olas, manifiesto</td><td class="tbl-email">Ayer · 17:40</td><td><span class="status st-active">ACTIVO</span></td></tr>
-              <tr><td class="tbl-name">Marco Salas</td><td class="tbl-email">Viax</td><td class="tbl-email">Torre de Control</td><td class="tbl-email">Hoy · 06:03</td><td><span class="status st-active">ACTIVO</span></td></tr>
-              <tr><td class="tbl-name">Elías Rojas</td><td class="tbl-email">Viax</td><td class="tbl-email">Conductores</td><td class="tbl-email">Hace 34 días</td><td><span class="status st-inactive">SIN USO</span></td></tr>
+              <tr><td class="tbl-id">#T-0049</td><td class="tbl-name">Cambio de contraseña</td><td class="tbl-email">El cliente</td><td class="tbl-email">02 oct</td><td><span class="status st-active">RESUELTO</span></td></tr>
+              <tr><td class="tbl-id">#T-0044</td><td class="tbl-name">Alta en Viax</td><td class="tbl-email">Marta Díaz (marketing)</td><td class="tbl-email">01 sep</td><td><span class="status st-active">RESUELTO</span></td></tr>
+              <tr><td class="tbl-id">#T-0031</td><td class="tbl-name">Alta en Qubo</td><td class="tbl-email">Marta Díaz (marketing)</td><td class="tbl-email">10 ago</td><td><span class="status st-active">RESUELTO</span></td></tr>
             </tbody>
           </table>
-          <div class="hint">Los usuarios los crea el propio cliente desde Mi cuenta. Aquí <b>solo se consultan</b>.</div>
+          <div class="hint">Las cuentas las crea y cambia <b>Soporte</b> en sus propios sistemas. Los usuarios del equipo del cliente se administran <b>dentro de cada plataforma</b>.</div>
         </div>
       </div>
 
@@ -783,18 +780,18 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
           <div class="dato"><span>Último acceso</span><span>Hoy · 08:12</span></div>
           <div class="dato"><span>Cliente desde</span><span>12 ago 2026</span></div>
           <div class="dato"><span>Vino de</span><span>Solicitud del 05 ago · Qubo</span></div>
-          <div class="pad" style="display:flex;gap:8px;border-top:1px solid var(--b3)"><button class="mini">Resetear clave</button><button class="mini warn">Bloquear</button></div>
+          <div class="pad" style="display:flex;gap:8px;border-top:1px solid var(--b3)"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div>
         </div>
 
         <div class="card">
           <div class="card-hdr"><div class="card-title">Historial</div></div>
           <div class="tl">
             <div class="tl-i"><div class="tl-d">HOY 08:12</div><div class="tl-t">Entró a <b>Viax</b> desde Mi cuenta</div></div>
-            <div class="tl-i"><div class="tl-d">02 OCT</div><div class="tl-t">Invitó a <b>Marco Salas</b> a Viax</div></div>
+            <div class="tl-i"><div class="tl-d">02 OCT</div><div class="tl-t">Soporte cambió su contraseña · ticket <b>#T-0049</b></div></div>
             <div class="tl-i"><div class="tl-d">28 SEP</div><div class="tl-t">Dejó un comentario sobre <b>Qubo</b> · aprobado</div></div>
-            <div class="tl-i"><div class="tl-d">03 SEP</div><div class="tl-t">Juan Ramírez agregó <b>Viax</b> a sus productos</div></div>
-            <div class="tl-i"><div class="tl-d">14 AGO</div><div class="tl-t">Cambió su clave temporal</div></div>
-            <div class="tl-i"><div class="tl-d">12 AGO</div><div class="tl-t">Marta Díaz lo dio de alta · contrató <b>Qubo</b></div></div>
+            <div class="tl-i"><div class="tl-d">03 SEP</div><div class="tl-t">Marta Díaz registró el alta en <b>Viax</b> · ticket #T-0044</div></div>
+            <div class="tl-i"><div class="tl-d">14 AGO</div><div class="tl-t">Soporte creó su usuario de <b>Qubo</b> · ticket #T-0031</div></div>
+            <div class="tl-i"><div class="tl-d">12 AGO</div><div class="tl-t">Marta Díaz pidió el alta en <b>Qubo</b> a Soporte · ticket #T-0031</div></div>
           </div>
         </div>
       </div>
@@ -856,9 +853,9 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
       <div class="ph-left">
         <div class="ph-crumb">Panel / <span>Clientes</span></div>
         <div class="ph-title">Clientes</div>
-        <div class="ph-sub">Todos los clientes con acceso a la plataforma y el producto que contrataron.</div>
+        <div class="ph-sub">Los clientes que Soporte ya dio de alta. Aquí solo se registra el alta con su ticket; las cuentas las maneja Soporte.</div>
       </div>
-      <div class="ph-actions"><button class="btn-sm btn-sm-ghost">Exportar</button><button class="btn-sm btn-sm-primary">+ Nuevo cliente</button></div>
+      <div class="ph-actions"><button class="btn-sm btn-sm-ghost">Exportar</button><button class="btn-sm btn-sm-primary" onclick="abrirRegistro(-1)">+ Registrar alta</button></div>
     </div>
 
     <div class="card">
@@ -867,94 +864,94 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
         <button class="fbtn on">Todos</button>
         <button class="fbtn">Activos</button>
         <button class="fbtn">Bloqueados</button>
-        <button class="fbtn">Clave pendiente</button>
+        <button class="fbtn">Alta en Soporte</button>
       </div>
       <table class="tbl">
-        <thead><tr><th>ID</th><th>Nombre</th><th>Correo</th><th>Producto</th><th>Usuarios</th><th>Alta</th><th>Último acceso</th><th>Acceso</th><th>Acciones</th></tr></thead>
+        <thead><tr><th>ID</th><th>Nombre</th><th>Correo</th><th>Producto</th><th>Ticket de alta</th><th>Alta</th><th>Último acceso</th><th>Acceso</th><th>Acciones</th></tr></thead>
         <tbody>
               <tr>
                 <td class="tbl-id">#C-0091</td>
                 <td class="tbl-name">Carlos López</td>
                 <td class="tbl-email">carlos.lopez@gmail.com</td>
                 <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">QUBO</span></td>
-                <td class="tbl-id" style="color:var(--muted)">4 / 10</td>
+                <td class="tbl-id" style="color:var(--amber)">#T-0031</td>
                 <td class="tbl-email">12 ago 2026</td>
                 <td><span class="status st-active">ACTIVO</span></td>
-                <td><div class="rowact"><button class="mini">Resetear</button><button class="mini warn">Bloquear</button></div></td>
+                <td><div class="rowact"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td>
               </tr>
               <tr>
                 <td class="tbl-id">#C-0090</td>
                 <td class="tbl-name">María Torres</td>
                 <td class="tbl-email">m.torres@logco.pe</td>
                 <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">FLETEX</span></td>
-                <td class="tbl-id" style="color:var(--muted)">2 / 5</td>
+                <td class="tbl-id" style="color:var(--amber)">#T-0029</td>
                 <td class="tbl-email">03 ago 2026</td>
                 <td><span class="status st-active">ACTIVO</span></td>
-                <td><div class="rowact"><button class="mini">Resetear</button><button class="mini warn">Bloquear</button></div></td>
+                <td><div class="rowact"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td>
               </tr>
               <tr>
                 <td class="tbl-id">#C-0089</td>
                 <td class="tbl-name">Diego Fuentes</td>
                 <td class="tbl-email">d.fuentes@transp.co</td>
                 <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">VIAX</span></td>
-                <td class="tbl-id" style="color:var(--muted)">7 / 10</td>
+                <td class="tbl-id" style="color:var(--amber)">#T-0024</td>
                 <td class="tbl-email">28 jul 2026</td>
                 <td><span class="status st-blocked">BLOQUEADO</span></td>
-                <td><div class="rowact"><button class="mini ok">Desbloquear</button><button class="mini">Resetear</button></div></td>
+                <td><div class="rowact"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td>
               </tr>
               <tr>
                 <td class="tbl-id">#C-0088</td>
                 <td class="tbl-name">Ana Ríos</td>
                 <td class="tbl-email">ana.rios@fletex.ec</td>
                 <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">EFLETEXIA BI</span></td>
-                <td class="tbl-id" style="color:var(--muted)">1 / 5</td>
+                <td class="tbl-id" style="color:var(--amber)">#T-0052</td>
                 <td class="tbl-email">21 jul 2026</td>
-                <td><span class="status st-pending">CLAVE PENDIENTE</span></td>
-                <td><div class="rowact"><button class="mini ok">Enviar clave</button><button class="mini warn">Bloquear</button></div></td>
+                <td><span class="status st-pending">ALTA EN SOPORTE</span></td>
+                <td><div class="rowact"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td>
               </tr>
               <tr>
                 <td class="tbl-id">#C-0087</td>
                 <td class="tbl-name">Luis Méndez</td>
                 <td class="tbl-email">luis.m@cargo.gt</td>
                 <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">EFLEXY</span></td>
-                <td class="tbl-id" style="color:var(--muted)">0 / 3</td>
+                <td class="tbl-id" style="color:var(--amber)">#T-0019</td>
                 <td class="tbl-email">14 jul 2026</td>
                 <td><span class="status st-inactive">INACTIVO</span></td>
-                <td><div class="rowact"><button class="mini">Resetear</button><button class="mini ok">Activar</button></div></td>
+                <td><div class="rowact"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td>
               </tr>
               <tr>
                 <td class="tbl-id">#C-0086</td>
                 <td class="tbl-name">Rosa Delgado</td>
                 <td class="tbl-email">r.delgado@andina.pe</td>
                 <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">QUBO</span></td>
-                <td class="tbl-id" style="color:var(--muted)">3 / 10</td>
+                <td class="tbl-id" style="color:var(--amber)">#T-0017</td>
                 <td class="tbl-email">02 jul 2026</td>
                 <td><span class="status st-active">ACTIVO</span></td>
-                <td><div class="rowact"><button class="mini">Resetear</button><button class="mini warn">Bloquear</button></div></td>
+                <td><div class="rowact"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td>
               </tr>
               <tr>
                 <td class="tbl-id">#C-0085</td>
                 <td class="tbl-name">Iván Guzmán</td>
                 <td class="tbl-email">ivan.g@nortecarga.mx</td>
                 <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">FLETEX</span></td>
-                <td class="tbl-id" style="color:#ef4444">5 / 5</td>
+                <td class="tbl-id" style="color:var(--amber)">#T-0015</td>
                 <td class="tbl-email">27 jun 2026</td>
                 <td><span class="status st-active">ACTIVO</span></td>
-                <td><div class="rowact"><button class="mini">Resetear</button><button class="mini warn">Bloquear</button></div></td>
+                <td><div class="rowact"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td>
               </tr>
               <tr>
                 <td class="tbl-id">#C-0084</td>
                 <td class="tbl-name">Nadia Ocampo</td>
                 <td class="tbl-email">n.ocampo@surlog.cr</td>
                 <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">EFLETEXIA BI</span></td>
-                <td class="tbl-id" style="color:var(--muted)">2 / 10</td>
+                <td class="tbl-id" style="color:var(--amber)">#T-0012</td>
                 <td class="tbl-email">15 jun 2026</td>
                 <td><span class="status st-blocked">BLOQUEADO</span></td>
-                <td><div class="rowact"><button class="mini ok">Desbloquear</button><button class="mini">Resetear</button></div></td>
+                <td><div class="rowact"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td>
               </tr>
         </tbody>
       </table>
-      <div class="hint">128 clientes registrados · se muestran los 8 más recientes. Clic en un nombre o en <b>Ficha</b> para ver productos, usuarios e historial. La columna <b>Usuarios</b> es solo informativa: cada cliente crea y administra los suyos.</div>
+      <div class="hint">128 clientes registrados · se muestran los 8 más recientes. Clic en un nombre o en <b>Ficha</b> para ver productos e historial. <b>Marketing no da de alta ni cambia cuentas</b>: lo pide a Soporte con un ticket y, cuando Soporte da el OK, registra aquí el alta. Los usuarios del equipo de cada cliente se administran dentro de cada plataforma.</div>
     </div>
     </div>
 
@@ -963,26 +960,26 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
       <div class="ph-left">
         <div class="ph-crumb">Panel / <span>Accesos y contraseñas</span></div>
         <div class="ph-title">Accesos y contraseñas</div>
-        <div class="ph-sub">Intentos fallidos, cuentas bloqueadas y las reglas de seguridad del ingreso.</div>
+        <div class="ph-sub">Solo consulta: intentos fallidos, cuentas bloqueadas y las reglas del ingreso. Desbloqueos y cambios de contraseña los hace Soporte.</div>
       </div>
-      <div class="ph-actions"><button class="btn-sm btn-sm-ghost">Exportar</button></div>
+      <div class="ph-actions"><button class="btn-sm btn-sm-ghost">Exportar</button><a class="btn-sm btn-sm-primary" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir desbloqueo a Soporte ↗</a></div>
     </div>
 
     <div class="twocol" style="margin-bottom:18px">
       <div class="card">
         <div class="card-hdr"><div class="card-title">Cuentas bloqueadas</div></div>
         <table class="tbl">
-          <thead><tr><th>Cliente</th><th>Motivo</th><th>Desde</th><th>Acciones</th></tr></thead>
+          <thead><tr><th>Cliente</th><th>Motivo</th><th>Desde</th><th>Ticket</th></tr></thead>
           <tbody>
             <tr><td class="tbl-name">Diego Fuentes</td><td class="tbl-email">3 intentos fallidos</td>
               <td class="tbl-email">Hoy · 09:42</td>
-              <td><div class="rowact"><button class="mini ok">Desbloquear</button><button class="mini">Resetear</button></div></td></tr>
+              <td><span class="status st-blue">#T-0053 EN CURSO</span></td></tr>
             <tr><td class="tbl-name">Nadia Ocampo</td><td class="tbl-email">Captcha no superado</td>
               <td class="tbl-email">Hoy · 09:10</td>
-              <td><div class="rowact"><button class="mini ok">Desbloquear</button><button class="mini">Resetear</button></div></td></tr>
+              <td><div class="rowact"><a class="mini" href="https://portal-usuarios.dtdevops.com/" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td></tr>
           </tbody>
         </table>
-        <div class="hint">Al desbloquear se envía una contraseña temporal al correo del cliente.</div>
+        <div class="hint">El desbloqueo lo hace <b>Soporte</b>: el cliente o marketing abren un ticket en la mesa de ayuda.</div>
       </div>
 
       <div class="card">
@@ -996,12 +993,12 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
           <div class="setv">ACTIVO</div>
         </div>
         <div class="setrow">
-          <div><div class="setl">Vigencia de la clave temporal</div><div class="setd">Tiempo para que el cliente cambie la contraseña que se le envió.</div></div>
-          <div class="setv">24 H</div>
+          <div><div class="setl">Olvidé mi contraseña</div><div class="setd">El enlace del login lleva a la mesa de ayuda.</div></div>
+          <div class="setv">MESA DE AYUDA</div>
         </div>
         <div class="setrow">
-          <div><div class="setl">Quién puede desbloquear</div><div class="setd">El cliente no puede liberarse solo.</div></div>
-          <div class="setv">ADMIN</div>
+          <div><div class="setl">Quién desbloquea y cambia contraseñas</div><div class="setd">Ni el cliente ni marketing: siempre con ticket.</div></div>
+          <div class="setv">SOPORTE</div>
         </div>
       </div>
     </div>
@@ -1097,7 +1094,7 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
         <thead><tr><th>Fecha</th><th>Nombre</th><th>Empresa</th><th>País</th><th>Producto</th><th>Responsable</th><th>Etapa</th><th>Acciones</th></tr></thead>
         <tbody id="solTabla"></tbody>
       </table>
-      <div class="hint">Una solicitud <b>no crea usuario ni contraseña</b>. Al pasar a <b>Cerrada</b> se ofrece darla de alta como cliente y ahí se le genera el acceso.</div>
+      <div class="hint">Una solicitud <b>no crea usuario ni contraseña</b>. Marketing <b>no da de alta</b>: en <b>Cerrada</b> pide el alta a Soporte con un ticket; cuando Soporte da el OK, usa <b>Registrar alta</b>.</div>
     </div>
     </div>
 
@@ -1114,14 +1111,13 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
     <div class="card" style="margin-bottom:18px">
       <div class="card-hdr"><div class="card-title">Catálogo y landings</div></div>
       <table class="tbl">
-        <thead><tr><th>Producto</th><th>Descripción corta</th><th>En la web</th><th>Landing</th><th>Tope de usuarios</th><th>Acciones</th></tr></thead>
+        <thead><tr><th>Producto</th><th>Descripción corta</th><th>En la web</th><th>Landing</th><th>Acciones</th></tr></thead>
         <tbody>
               <tr>
                 <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">VIAX</span></td>
                 <td class="tbl-name">Navegación y millas</td>
                 <td><span class="status st-active">VISIBLE</span></td>
                 <td><span class="status st-active">PUBLICADA</span></td>
-                <td class="tbl-id">10</td>
                 <td><div class="rowact"><button class="mini ok" onclick="editarLanding('viax')">Editar landing</button><button class="mini">Datos</button><button class="mini warn">Ocultar</button></div></td>
               </tr>
               <tr>
@@ -1129,7 +1125,6 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
                 <td class="tbl-name">Robots de última milla</td>
                 <td><span class="status st-inactive">OCULTO</span></td>
                 <td><span class="status st-pending">EN CONSTRUCCIÓN</span></td>
-                <td class="tbl-id">10</td>
                 <td><div class="rowact"><button class="mini ok" onclick="editarLanding('eflexy')">Editar landing</button><button class="mini">Datos</button><button class="mini ok">Mostrar</button></div></td>
               </tr>
               <tr>
@@ -1137,7 +1132,6 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
                 <td class="tbl-name">Simulador de tarifas</td>
                 <td><span class="status st-inactive">OCULTO</span></td>
                 <td><span class="status st-pending">EN CONSTRUCCIÓN</span></td>
-                <td class="tbl-id">10</td>
                 <td><div class="rowact"><button class="mini ok" onclick="editarLanding('fletex')">Editar landing</button><button class="mini">Datos</button><button class="mini ok">Mostrar</button></div></td>
               </tr>
               <tr>
@@ -1145,7 +1139,6 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
                 <td class="tbl-name">Simulador de cubicaje</td>
                 <td><span class="status st-inactive">OCULTO</span></td>
                 <td><span class="status st-pending">EN CONSTRUCCIÓN</span></td>
-                <td class="tbl-id">10</td>
                 <td><div class="rowact"><button class="mini ok" onclick="editarLanding('qubo')">Editar landing</button><button class="mini">Datos</button><button class="mini ok">Mostrar</button></div></td>
               </tr>
               <tr>
@@ -1153,7 +1146,6 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
                 <td class="tbl-name">Centro de control</td>
                 <td><span class="status st-inactive">OCULTO</span></td>
                 <td><span class="status st-pending">EN CONSTRUCCIÓN</span></td>
-                <td class="tbl-id">10</td>
                 <td><div class="rowact"><button class="mini ok" onclick="editarLanding('bi')">Editar landing</button><button class="mini">Datos</button><button class="mini ok">Mostrar</button></div></td>
               </tr>
         </tbody>
@@ -1220,10 +1212,10 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
               </tr>
               <tr>
                 <td class="tbl-email">Hoy · 09:44</td>
-                <td class="tbl-name">Juan Ramírez</td>
+                <td class="tbl-name">Soporte</td>
                 <td class="tbl-email">Desbloqueó cuenta</td>
                 <td class="tbl-name">Diego Fuentes</td>
-                <td class="tbl-email">Tras 3 intentos fallidos</td>
+                <td class="tbl-email">Ticket #T-0053 · tras 3 intentos fallidos</td>
               </tr>
               <tr>
                 <td class="tbl-email">Hoy · 09:12</td>
@@ -1241,17 +1233,17 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
               </tr>
               <tr>
                 <td class="tbl-email">Ayer · 18:05</td>
-                <td class="tbl-name">Juan Ramírez</td>
-                <td class="tbl-email">Reseteó contraseña</td>
+                <td class="tbl-name">Soporte</td>
+                <td class="tbl-email">Cambió contraseña</td>
                 <td class="tbl-name">Ana Ríos</td>
-                <td class="tbl-email">Clave temporal enviada</td>
+                <td class="tbl-email">Ticket #T-0050</td>
               </tr>
               <tr>
                 <td class="tbl-email">Ayer · 15:20</td>
                 <td class="tbl-name">Marta Díaz</td>
-                <td class="tbl-email">Dio de alta cliente</td>
+                <td class="tbl-email">Registró alta</td>
                 <td class="tbl-name">Rosa Delgado</td>
-                <td class="tbl-email">Contrató Qubo</td>
+                <td class="tbl-email">Qubo · ticket #T-0017 aprobado por Soporte</td>
               </tr>
               <tr>
                 <td class="tbl-email">Ayer · 10:02</td>
@@ -1269,11 +1261,32 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
               </tr>
         </tbody>
       </table>
-      <div class="hint">Las acciones marcadas como <b>Sistema</b> las ejecuta la propia plataforma: por ejemplo, el bloqueo automático al tercer intento fallido.</div>
+      <div class="hint">Las acciones de <b>Sistema</b> las ejecuta la plataforma (por ejemplo, el bloqueo al tercer intento). Las de <b>Soporte</b> llegan con su número de ticket.</div>
     </div>
     </div>
 
   </main>
+</div>
+
+
+<div class="modal-overlay" id="mReg" onclick="if(event.target===this)cerrarRegistro()">
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-title">Registrar alta</div><button class="modal-close" onclick="cerrarRegistro()">✕</button></div>
+    <div class="modal-body">
+      <p style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px">Solo después del <b style="color:var(--amber)">OK de Soporte</b>. Marketing no crea usuarios: registra el alta que Soporte ya hizo en sus sistemas.</p>
+      <div class="fld"><label>Ticket de Soporte</label><input class="inp" id="rTicket" placeholder="#T-0000"></div>
+      <div class="twocol" style="gap:12px">
+        <div class="fld"><label>Cliente / empresa</label><input class="inp" id="rEmpresa"></div>
+        <div class="fld"><label>Producto</label><select class="inp" id="rProd"><option>VIAX</option><option>QUBO</option><option>FLETEX</option><option>EFLETEXIA BI</option><option>EFLEXY</option></select></div>
+      </div>
+      <div class="twocol" style="gap:12px">
+        <div class="fld"><label>Usuario dado de alta</label><input class="inp" id="rNombre"></div>
+        <div class="fld"><label>Correo del usuario</label><input class="inp" id="rCorreo" placeholder="nombre@empresa.com"></div>
+      </div>
+      <label class="check-ok" style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text);margin:4px 0 16px;cursor:pointer"><input type="checkbox" id="rOk" style="margin-top:2px;accent-color:#22c55e">Confirmo que Soporte cerró el ticket con el alta lista</label>
+      <div style="display:flex;justify-content:flex-end;gap:10px"><button class="btn-sm btn-sm-ghost" onclick="cerrarRegistro()">Cancelar</button><button class="btn-sm btn-sm-primary" onclick="guardarRegistro()">Registrar alta</button></div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -1371,7 +1384,7 @@ function pintarAnalitica() {
   const uso = [
     [Math.min(act, Math.round(128 * f)) + ' / ' + Math.round(128 * f), 'clientes activos en el rango'],
     [Math.round(2340 * fr * f).toLocaleString('es'), 'ingresos a las soluciones'],
-    ['58%', 'de usuarios usados frente al tope (612 de 1.050)'],
+    [Math.round(6 * fr * f), 'altas registradas con ticket de Soporte'],
     [Math.round(24 * f), 'clientes sin entrar hace más de 30 días']
   ];
   $('anUso').innerHTML = uso.map(u => `<div class="mk"><div class="mk-v">${u[0]}</div><div class="mk-l">${u[1]}</div></div>`).join('');
@@ -1382,7 +1395,9 @@ $('anProd').onchange = pintarAnalitica;
 pintarAnalitica();
 
 // ── Solicitudes como embudo
-const ETAPAS = [['nueva', 'Nueva', 'st-pending'], ['contactada', 'Contactada', 'st-blue'], ['demo', 'Demo', 'st-purple'], ['cerrada', 'Cerrada', 'st-active'], ['sin', 'Sin interés', 'st-inactive']];
+const MESA = 'https://portal-usuarios.dtdevops.com/';
+const ETAPAS = [['nueva', 'Nueva', 'st-pending'], ['contactada', 'Contactada', 'st-blue'], ['demo', 'Demo', 'st-purple'], ['cerrada', 'Cerrada', 'st-active'], ['soporte', 'Alta en Soporte', 'st-pending'], ['alta', 'Dada de alta', 'st-active'], ['sin', 'Sin interés', 'st-inactive']];
+let ticketSig = 54;
 const SOL = [
   { f: 'Hoy · 09:20', n: 'Jorge Lazo', e: 'Andina Cargo', p: 'Perú', pr: 'QUBO', r: 'Sin asignar', et: 'nueva' },
   { f: 'Hoy · 08:05', n: 'Rocío Paredes', e: 'Distribuidora Sur', p: 'Ecuador', pr: 'EFLETEXIA BI', r: 'Sin asignar', et: 'nueva' },
@@ -1390,14 +1405,16 @@ const SOL = [
   { f: 'Ayer · 18:02', n: 'Sara Molina', e: 'Logística Pacífico', p: 'Colombia', pr: 'PLATAFORMA T2', r: 'Sin asignar', et: 'nueva' },
   { f: 'Ayer · 16:12', n: 'Elena Ruiz', e: 'Log Andes', p: 'Perú', pr: 'VIAX', r: 'Juan Ramírez', et: 'contactada' },
   { f: 'Ayer · 11:30', n: 'Pablo Sierra', e: 'Cargo Norte', p: 'México', pr: 'VIAX', r: 'Marta Díaz', et: 'demo' },
-  { f: '28 sep', n: 'Tomás Vega', e: 'Ruta Sur', p: 'Perú', pr: 'VIAX', r: 'Marta Díaz', et: 'demo' },
-  { f: '22 sep', n: 'Andrea Lima', e: 'TransAndes', p: 'Colombia', pr: 'VIAX', r: 'Juan Ramírez', et: 'cerrada' },
+  { f: '28 sep', n: 'Tomás Vega', e: 'Ruta Sur', p: 'Perú', pr: 'VIAX', r: 'Marta Díaz', et: 'soporte', tk: '#T-0051', c: 't.vega@rutasur.pe' },
+  { f: '25 sep', n: 'Iris Campos', e: 'Carga Rápida', p: 'México', pr: 'VIAX', r: 'Juan Ramírez', et: 'cerrada', c: 'iris@cargarapida.mx' },
+  { f: '22 sep', n: 'Andrea Lima', e: 'TransAndes', p: 'Colombia', pr: 'VIAX', r: 'Juan Ramírez', et: 'alta', tk: '#T-0046' },
   { f: '12 sep', n: 'Lucía Barrios', e: 'Frío Express', p: 'Costa Rica', pr: 'QUBO', r: 'Juan Ramírez', et: 'sin' }
 ];
 let solEt = '';
 function pintarSol() {
   const resp = $('solResp').value, prod = $('solProd').value;
   const base = SOL.filter(s => (!resp || s.r === resp) && (!prod || s.pr === prod));
+  $('solFunnel').style.gridTemplateColumns = 'repeat(7,1fr)';
   $('solFunnel').innerHTML = ETAPAS.map(e => {
     const n = base.filter(s => s.et === e[0]).length;
     return `<div class="fstage${solEt === e[0] ? ' on' : ''}" onclick="filtrarEtapa('${e[0]}')"><div class="fs-l">${e[1]}</div><div class="fs-n">${n}</div><div class="fs-r">${solEt === e[0] ? 'filtrando · clic para quitar' : 'clic para filtrar'}</div></div>`;
@@ -1408,13 +1425,51 @@ function pintarSol() {
     const et = ETAPAS.find(e => e[0] === s.et);
     const opts = ETAPAS.map(e => `<option value="${e[0]}"${e[0] === s.et ? ' selected' : ''}>${e[1]}</option>`).join('');
     const ropts = ['Sin asignar', 'Marta Díaz', 'Juan Ramírez'].map(r => `<option${r === s.r ? ' selected' : ''}>${r}</option>`).join('');
-    const alta = s.et === 'cerrada' ? `<button class="mini ok" onclick="aviso('Abriendo alta de cliente con los datos de ${esc(s.n)}')">Dar de alta</button>` : '';
+    const alta = s.et === 'cerrada' ? `<button class="mini ok" onclick="pedirAlta(${i})">Pedir alta a Soporte ↗</button>`
+      : s.et === 'soporte' ? `<span class="tbl-id" style="color:var(--amber)">${s.tk}</span><button class="mini ok" onclick="abrirRegistro(${i})">Registrar alta</button>`
+      : s.et === 'alta' ? `<span class="tbl-id">${s.tk}</span>` : '';
     return `<tr><td class="tbl-email">${s.f}</td><td class="tbl-name">${esc(s.n)}</td><td class="tbl-email">${esc(s.e)}</td><td class="tbl-email">${s.p}</td>
       <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">${s.pr}</span></td>
       <td><select class="sel" style="padding:5px 8px;font-size:11.5px${s.r === 'Sin asignar' ? ';color:var(--amber)' : ''}" onchange="SOL[${i}].r=this.value;pintarSol()">${ropts}</select></td>
       <td><span class="status ${et[2]}">${et[1].toUpperCase()}</span></td>
       <td><div class="rowact"><select class="sel" style="padding:5px 8px;font-size:11.5px" onchange="moverEtapa(${i},this.value)">${opts}</select>${alta}</div></td></tr>`;
   }).join('') || '<tr><td colspan="8" class="tbl-email" style="text-align:center;padding:22px">No hay solicitudes con este filtro.</td></tr>';
+}
+function pedirAlta(i) {
+  const s = SOL[i];
+  s.tk = '#T-' + String(ticketSig++).padStart(4, '0'); s.et = 'soporte';
+  window.open(MESA, '_blank', 'noopener');
+  aviso('Ticket ' + s.tk + ' abierto en Soporte para el alta de ' + s.n);
+  pintarSol();
+}
+let regIdx = -1;
+function abrirRegistro(i) {
+  regIdx = i; const s = i >= 0 ? SOL[i] : {};
+  $('rTicket').value = s.tk || ''; $('rEmpresa').value = s.e || ''; $('rNombre').value = s.n || '';
+  $('rCorreo').value = s.c || ''; $('rProd').value = s.pr && s.pr !== 'PLATAFORMA T2' ? s.pr : 'VIAX'; $('rOk').checked = false;
+  $('mReg').classList.add('open');
+}
+function cerrarRegistro() { $('mReg').classList.remove('open'); }
+function guardarRegistro() {
+  const tk = $('rTicket').value.trim(), nom = $('rNombre').value.trim(), cor = $('rCorreo').value.trim();
+  if (!/^#?T-\d{3,}$/i.test(tk)) { aviso('Escribe el número de ticket de Soporte (por ejemplo #T-0051)'); return; }
+  if (!nom || !cor) { aviso('Completa el usuario y su correo'); return; }
+  if (!$('rOk').checked) { aviso('Primero confirma que Soporte cerró el ticket con el alta lista'); return; }
+  const tb = document.querySelector('#v-clientes tbody');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td class="tbl-id">#C-0092</td><td class="tbl-name">${esc(nom)}</td><td class="tbl-email">${esc(cor)}</td>
+    <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">${$('rProd').value}</span></td>
+    <td class="tbl-id" style="color:var(--amber)">${esc(tk.toUpperCase().replace(/^T/, '#T'))}</td><td class="tbl-email">Hoy</td><td class="tbl-email">Nunca</td>
+    <td><span class="status st-active">ACTIVO</span></td>
+    <td><div class="rowact"><button class="mini ok" onclick="mostrar('ficha')">Ficha</button><a class="mini" href="${MESA}" target="_blank" rel="noopener" style="text-decoration:none">Pedir a Soporte ↗</a></div></td>`;
+  tb.insertBefore(tr, tb.firstChild);
+  const bt = document.querySelector('#v-bitacora tbody');
+  const br = document.createElement('tr');
+  br.innerHTML = `<td class="tbl-email">Ahora</td><td class="tbl-name">Juan Ramírez</td><td class="tbl-email">Registró alta</td><td class="tbl-name">${esc(nom)}</td><td class="tbl-email">${$('rProd').value} · ticket ${esc(tk)} aprobado por Soporte</td>`;
+  bt.insertBefore(br, bt.firstChild);
+  if (regIdx >= 0) { SOL[regIdx].et = 'alta'; SOL[regIdx].tk = tk; pintarSol(); }
+  cerrarRegistro();
+  aviso('Alta registrada: ' + nom + ' ya aparece en Clientes');
 }
 function filtrarEtapa(e) { solEt = solEt === e ? '' : e; pintarSol(); }
 function moverEtapa(i, e) {
