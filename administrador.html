@@ -534,8 +534,8 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
         <div class="kpi-val"><span>9</span></div><div class="kpi-delta delta-up">▲ 3 sin responsable</div><div class="kpi-glow"></div></div>
       <div class="kpi" style="cursor:pointer" onclick="irAVista('accesos')"><div class="kpi-top"><div class="kpi-label">Cuentas bloqueadas</div></div>
         <div class="kpi-val"><span>2</span></div><div class="kpi-delta delta-dn">▼ desbloqueo vía Soporte</div><div class="kpi-glow"></div></div>
-      <div class="kpi" style="cursor:pointer" onclick="irAVista('solicitudes');filtrarEtapa('soporte')"><div class="kpi-top"><div class="kpi-label">Altas esperando a Soporte</div></div>
-        <div class="kpi-val"><span>2</span></div><div class="kpi-delta delta-dn">▼ con ticket anotado, sin OK todavía</div><div class="kpi-glow"></div></div>
+      <div class="kpi" style="cursor:pointer" onclick="irAVista('clientes')"><div class="kpi-top"><div class="kpi-label">Altas esperando a Soporte</div></div>
+        <div class="kpi-val"><span>2</span></div><div class="kpi-delta delta-dn">▼ clientes con ticket, sin OK de Soporte</div><div class="kpi-glow"></div></div>
       <div class="kpi" style="cursor:pointer" onclick="irAVista('comentarios')"><div class="kpi-top"><div class="kpi-label">Comentarios por aprobar</div></div>
         <div class="kpi-val"><span>4</span></div><div class="kpi-delta delta-dn">▼ pendientes de revisión</div><div class="kpi-glow"></div></div>
     </div>
@@ -1082,7 +1082,7 @@ textarea.inp{min-height:70px;resize:vertical;line-height:1.55}
         <thead><tr><th>Fecha</th><th>Nombre</th><th>Empresa</th><th>País</th><th>Producto</th><th>Responsable</th><th>Etapa</th><th>Acciones</th></tr></thead>
         <tbody id="solTabla"></tbody>
       </table>
-      <div class="hint">Una solicitud <b>no crea usuario ni contraseña</b>. Todo lo que sea alta se hace en <b>Clientes → Registrar alta</b>: elegir "Alta en Soporte" o "Dada de alta" te lleva allí, y la solicitud solo cambia de etapa si el registro se guarda.</div>
+      <div class="hint">Una solicitud <b>no crea usuario ni contraseña</b>. La etapa <b>Dada de alta</b> se registra en <b>Clientes → Registrar alta</b>: elegirla te lleva allí y la solicitud solo cambia si el registro se guarda. Si Soporte aún no da el OK, el cliente queda en Clientes como <b>Alta en Soporte</b>.</div>
     </div>
     </div>
 
@@ -1426,8 +1426,8 @@ pintarAnalitica();
 
 // ── Solicitudes como embudo
 const MESA = 'https://portal-usuarios.dtdevops.com/';
-const ETAPAS = [['nueva', 'Nueva', 'st-pending'], ['contactada', 'Contactada', 'st-blue'], ['demo', 'Demo', 'st-purple'], ['soporte', 'Alta en Soporte', 'st-pending'], ['alta', 'Dada de alta', 'st-active'], ['sin', 'Sin interés', 'st-inactive']];
-const ALTAS = ['soporte', 'alta'];
+const ETAPAS = [['nueva', 'Nueva', 'st-pending'], ['contactada', 'Contactada', 'st-blue'], ['demo', 'Demo', 'st-purple'], ['alta', 'Dada de alta', 'st-active'], ['sin', 'Sin interés', 'st-inactive']];
+const ALTAS = ['alta'];
 const SOL = [
   { f: 'Hoy · 09:20', n: 'Jorge Lazo', e: 'Andina Cargo', p: 'Perú', pr: 'QUBO', r: 'Sin asignar', et: 'nueva' },
   { f: 'Hoy · 08:05', n: 'Rocío Paredes', e: 'Distribuidora Sur', p: 'Ecuador', pr: 'EFLETEXIA BI', r: 'Sin asignar', et: 'nueva' },
@@ -1435,7 +1435,7 @@ const SOL = [
   { f: 'Ayer · 18:02', n: 'Sara Molina', e: 'Logística Pacífico', p: 'Colombia', pr: 'PLATAFORMA T2', r: 'Sin asignar', et: 'nueva' },
   { f: 'Ayer · 16:12', n: 'Elena Ruiz', e: 'Log Andes', p: 'Perú', pr: 'VIAX', r: 'Juan Ramírez', et: 'contactada' },
   { f: 'Ayer · 11:30', n: 'Pablo Sierra', e: 'Cargo Norte', p: 'México', pr: 'VIAX', r: 'Marta Díaz', et: 'demo', c: 'p.sierra@cargonorte.mx' },
-  { f: '28 sep', n: 'Tomás Vega', e: 'Ruta Sur', p: 'Perú', pr: 'VIAX', r: 'Marta Díaz', et: 'soporte', tk: '#T-0051', c: 't.vega@rutasur.pe' },
+  { f: '28 sep', n: 'Tomás Vega', e: 'Ruta Sur', p: 'Perú', pr: 'VIAX', r: 'Marta Díaz', et: 'alta', tk: '#T-0051', c: 't.vega@rutasur.pe' },
   { f: '25 sep', n: 'Iris Campos', e: 'Carga Rápida', p: 'México', pr: 'VIAX', r: 'Juan Ramírez', et: 'demo', c: 'iris@cargarapida.mx' },
   { f: '22 sep', n: 'Andrea Lima', e: 'TransAndes', p: 'Colombia', pr: 'VIAX', r: 'Juan Ramírez', et: 'alta', tk: '#T-0046' },
   { f: '12 sep', n: 'Lucía Barrios', e: 'Frío Express', p: 'Costa Rica', pr: 'QUBO', r: 'Juan Ramírez', et: 'sin' }
@@ -1444,7 +1444,7 @@ let solEt = '';
 function pintarSol() {
   const resp = $('solResp').value, prod = $('solProd').value;
   const base = SOL.filter(s => (!resp || s.r === resp) && (!prod || s.pr === prod));
-  $('solFunnel').style.gridTemplateColumns = 'repeat(6,1fr)';
+  $('solFunnel').style.gridTemplateColumns = 'repeat(5,1fr)';
   $('solFunnel').innerHTML = ETAPAS.map(e => {
     const n = base.filter(s => s.et === e[0]).length;
     return `<div class="fstage${solEt === e[0] ? ' on' : ''}" onclick="filtrarEtapa('${e[0]}')"><div class="fs-l">${e[1]}</div><div class="fs-n">${n}</div><div class="fs-r">${solEt === e[0] ? 'filtrando · clic para quitar' : 'clic para filtrar'}</div></div>`;
@@ -1456,7 +1456,6 @@ function pintarSol() {
     const opts = ETAPAS.map(e => `<option value="${e[0]}"${e[0] === s.et ? ' selected' : ''}>${e[1]}${ALTAS.includes(e[0]) && e[0] !== s.et ? ' → Clientes' : ''}</option>`).join('');
     const ropts = ['Sin asignar', 'Marta Díaz', 'Juan Ramírez'].map(r => `<option${r === s.r ? ' selected' : ''}>${r}</option>`).join('');
     const alta = s.et === 'demo' ? `<button class="mini ok" onclick="irARegistrar(${i})">Registrar alta</button>`
-      : s.et === 'soporte' ? `<span class="tbl-id" style="color:var(--amber)">${s.tk}</span><button class="mini ok" onclick="irARegistrar(${i})">Confirmar alta</button>`
       : s.et === 'alta' ? `<span class="tbl-id">${s.tk}</span>` : '';
     return `<tr><td class="tbl-email">${s.f}</td><td class="tbl-name">${esc(s.n)}</td><td class="tbl-email">${esc(s.e)}</td><td class="tbl-email">${s.p}</td>
       <td><span style="font-size:11px;color:var(--amber);font-family:var(--mono)">${s.pr}</span></td>
@@ -1478,7 +1477,7 @@ function abrirRegistro(i, fila) {
       n: fila.children[1].textContent.trim(), c: fila.children[2].textContent.trim(),
       pr: fila.children[3].textContent.trim().split(' · ')[0], tk: fila.children[4].textContent.trim(), e: '' } : {});
   $('rOrigen').innerHTML = i >= 0
-    ? `Viene de la solicitud de <b style="color:var(--text)">${esc(s.n)}</b>. Al guardar, la solicitud pasa a <b style="color:var(--text)">Alta en Soporte</b> o <b style="color:var(--text)">Dada de alta</b> según lo que marques; si cancelas, queda como está.`
+    ? `Viene de la solicitud de <b style="color:var(--text)">${esc(s.n)}</b>. Al guardar, la solicitud pasa a <b style="color:var(--text)">Dada de alta</b>; si cancelas, queda como está.`
     : fila ? `Confirmas el alta de <b style="color:var(--text)">${esc(s.n)}</b>, que estaba esperando a Soporte.` : '';
   $('rOrigen').style.display = (i >= 0 || fila) ? 'block' : 'none';
   $('rTicket').value = s.tk || ''; $('rEmpresa').value = s.e || ''; $('rNombre').value = s.n || '';
@@ -1508,7 +1507,7 @@ function guardarRegistro() {
     <td class="tbl-id" style="color:var(--amber)">${esc(tk)}</td><td class="tbl-email">Hoy</td><td class="tbl-email">Nunca</td>
     <td>${estado}</td>
     <td><div class="rowact"><button class="mini ok" onclick="mostrar('ficha')">Ficha</button><a class="mini" href="${MESA}" target="_blank" rel="noopener" style="text-decoration:none">Soporte ↗</a></div></td>`;
-  if (regIdx >= 0) { SOL[regIdx].et = ok ? 'alta' : 'soporte'; SOL[regIdx].tk = tk; SOL[regIdx].fila = tr; tr.dataset.sol = regIdx; pintarSol(); }
+  if (regIdx >= 0) { SOL[regIdx].et = 'alta'; SOL[regIdx].tk = tk; SOL[regIdx].fila = tr; tr.dataset.sol = regIdx; pintarSol(); }
   const accion = ok ? 'Registró alta' : 'Registró pedido de alta';
   document.querySelector('#v-bitacora tbody').insertAdjacentHTML('afterbegin',
     `<tr><td class="tbl-email">Ahora</td><td class="tbl-name">Juan Ramírez</td><td class="tbl-email">${accion}</td><td class="tbl-name">${esc(nom)}</td><td class="tbl-email">${plats.join(', ')} · ticket ${esc(tk)}${ok ? ' aprobado por Soporte' : ' esperando a Soporte'}</td></tr>`);
@@ -1728,6 +1727,8 @@ function pintarBloq() {
   const bloqCarlos = BLOQ.some(b => b.c === 'Carlos López');
   $('fEstado').innerHTML = `<span class="status ${bloqCarlos ? 'st-blocked' : 'st-active'}">${bloqCarlos ? 'BLOQUEADA' : 'ACTIVA'}</span>
     <button class="mini ${bloqCarlos ? 'ok' : 'warn'}" style="margin-left:8px" onclick="abrirCta('${bloqCarlos ? 'desbloqueo' : 'bloqueo'}','Carlos López')">${bloqCarlos ? 'Registrar desbloqueo' : 'Registrar bloqueo'}</button>`;
+  const pend = [...document.querySelectorAll('#v-clientes tbody tr')].filter(t => t.children[7] && /ALTA EN SOPORTE/.test(t.children[7].textContent)).length;
+  document.querySelectorAll('.kpi-label').forEach(l => { if (l.textContent === 'Altas esperando a Soporte') l.closest('.kpi').querySelector('.kpi-val span').textContent = pend; });
   document.querySelectorAll('.kpi-label').forEach(l => { if (l.textContent === 'Cuentas bloqueadas') l.closest('.kpi').querySelector('.kpi-val span').textContent = BLOQ.length; });
   // en cada fila de Clientes: registrar bloqueo o desbloqueo según su estado
   document.querySelectorAll('#v-clientes tbody tr').forEach(tr => {
